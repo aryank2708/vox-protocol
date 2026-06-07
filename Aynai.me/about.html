@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About · AYN AI</title>
+  <meta name="description" content="Aryan Khudlain. 21 years old, Delhi-based. Founder of AYN AI. Building AI systems for businesses across India and the USA.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.svg">
+  <meta name="theme-color" content="#efeeec">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+
+  <style>
+    body { background: var(--cream); }
+
+    .ab-hero {
+      padding: 140px clamp(20px,5vw,56px) 60px;
+      text-align: center;
+      background: var(--cream);
+      position: relative; overflow: hidden;
+    }
+    .ab-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 20%, rgba(255,76,36,0.06), transparent 70%);
+      pointer-events: none;
+    }
+    .ab-hero-inner { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; }
+    .ab-hero h1 {
+      font-family: var(--ff-mono); font-weight: 700;
+      font-size: clamp(48px, 9vw, 132px);
+      line-height: 0.95; letter-spacing: -0.05em;
+      text-transform: lowercase; color: var(--ink);
+      margin-top: 18px;
+    }
+    .ab-hero h1 em {
+      font-family: var(--ff-serif); font-style: italic;
+      font-weight: 400; color: var(--coral); letter-spacing: -0.025em;
+    }
+
+    /* Founder block */
+    .ab-founder {
+      max-width: 1280px; margin: 0 auto;
+      padding: clamp(60px, 8vw, 100px) clamp(20px,5vw,56px);
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: clamp(40px, 6vw, 88px);
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .ab-founder { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* Photo card */
+    .ab-photo {
+      position: sticky; top: 100px;
+      width: 100%;
+      aspect-ratio: 1;
+      background: var(--ink);
+      color: var(--lime);
+      border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--ff-mono); font-weight: 700;
+      font-size: clamp(120px, 16vw, 180px);
+      letter-spacing: -0.05em;
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.05) inset,
+        0 30px 80px rgba(0,0,0,0.18);
+      position: relative;
+      overflow: hidden;
+    }
+    /* TODO: Replace with Aryan's headshot photo */
+    .ab-photo::after {
+      content: 'FOUNDER · 001';
+      position: absolute;
+      bottom: 18px; left: 0; right: 0;
+      text-align: center;
+      font-family: var(--ff-mono); font-size: 10px;
+      letter-spacing: .3em;
+      color: var(--cream);
+      opacity: .35;
+    }
+
+    .ab-name {
+      font-family: var(--ff-mono); font-weight: 700;
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: 1; letter-spacing: -0.04em;
+      text-transform: lowercase;
+      margin-bottom: 6px;
+    }
+    .ab-name em { font-family: var(--ff-serif); font-style: italic; font-weight: 400; color: var(--coral); }
+
+    .ab-role {
+      font-family: var(--ff-mono); font-size: 12px;
+      color: var(--coral);
+      letter-spacing: .12em; text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .ab-bio {
+      font-family: var(--ff-sans); font-size: clamp(16px, 1.4vw, 19px);
+      line-height: 1.7;
+      color: var(--ink-2);
+      max-width: 620px;
+      margin-bottom: 32px;
+    }
+    .ab-bio p + p { margin-top: 20px; }
+
+    .ab-sig-row {
+      display: flex; align-items: center; gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+
+    .ab-sig {
+      display: block;
+      width: 200px;
+      height: auto;
+      background: #fff;
+      padding: 10px 14px;
+      border-radius: 4px;
+      box-shadow:
+        0 1px 1px rgba(0,0,0,0.05),
+        0 4px 14px rgba(0,0,0,0.06),
+        inset 0 0 0 1px rgba(0,0,0,0.03);
+      transform: rotate(-2deg);
+      transition: transform .35s var(--ease);
+    }
+    .ab-sig:hover { transform: rotate(0); }
+
+    .ab-social {
+      display: flex; gap: 8px;
+    }
+    .ab-social a {
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 1px solid var(--line-2);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ink);
+      transition: all .25s var(--ease);
+    }
+    .ab-social a:hover {
+      background: var(--ink); color: var(--lime);
+      border-color: var(--ink); transform: translateY(-2px);
+    }
+
+    /* Stats row */
+    .ab-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      max-width: 720px;
+      margin-bottom: 16px;
+      border-top: 1px solid var(--line);
+      padding-top: 28px;
+    }
+    .ab-stat {
+      padding-right: 24px;
+      border-right: 1px solid var(--line);
+    }
+    .ab-stat:last-child { border-right: none; }
+    .ab-stat-n {
+      font-family: var(--ff-mono); font-weight: 700;
+      font-size: clamp(28px, 3vw, 40px);
+      letter-spacing: -0.03em; line-height: 1;
+      color: var(--ink);
+      margin-bottom: 6px;
+      display: flex; align-items: baseline; gap: 1px;
+    }
+    .ab-stat-n em {
+      font-family: var(--ff-serif); font-style: italic;
+      font-weight: 400; color: var(--coral); font-size: 0.7em;
+    }
+    .ab-stat-l {
+      font-family: var(--ff-mono); font-size: 11px;
+      color: var(--muted);
+      letter-spacing: .1em; text-transform: uppercase;
+    }
+    @media (max-width: 600px) {
+      .ab-stats { grid-template-columns: 1fr; }
+      .ab-stat { border-right: none; border-bottom: 1px solid var(--line);
+        padding-bottom: 14px; margin-bottom: 14px; }
+      .ab-stat:last-child { border-bottom: none; padding-bottom: 0; }
+    }
+
+    /* What I've built */
+    .ab-work-wrap {
+      background: #08080d;
+      color: var(--cream);
+      padding: clamp(80px,10vw,130px) clamp(20px,5vw,56px);
+      border-top: 1px solid var(--line);
+    }
+    .ab-work-inner { max-width: 1280px; margin: 0 auto; }
+
+    .ab-work-head {
+      margin-bottom: clamp(40px, 5vw, 60px);
+    }
+    .ab-work-kicker {
+      font-family: var(--ff-mono); font-size: 11px;
+      color: var(--lime); letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .ab-work-kicker::before { content: '●'; }
+
+    .ab-work-title {
+      font-family: var(--ff-mono); font-weight: 700;
+      font-size: clamp(36px, 6vw, 72px);
+      line-height: 1; letter-spacing: -0.045em;
+      text-transform: lowercase;
+      color: var(--cream);
+    }
+    .ab-work-title em { font-family: var(--ff-serif); font-style: italic; font-weight: 400; color: var(--lime); }
+
+    .ab-work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .ab-work-card {
+      background: #0d0d14;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 28px;
+      display: flex; flex-direction: column; gap: 12px;
+      transition: all .3s var(--ease);
+      text-decoration: none; color: inherit;
+    }
+    .ab-work-card:hover {
+      border-color: rgba(195,255,0,0.25);
+      transform: translateY(-3px);
+    }
+    .ab-work-card-cat {
+      font-family: var(--ff-mono); font-size: 10px;
+      color: var(--lime);
+      letter-spacing: .14em; text-transform: uppercase;
+    }
+    .ab-work-card-title {
+      font-family: var(--ff-mono); font-weight: 700;
+      font-size: 20px; line-height: 1.05; letter-spacing: -0.025em;
+      text-transform: lowercase; color: var(--cream);
+    }
+    .ab-work-card-title em { font-family: var(--ff-serif); font-style: italic; font-weight: 400; color: var(--lime); }
+    .ab-work-card-desc {
+      font-family: var(--ff-sans); font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.55; flex-grow: 1;
+    }
+    .ab-work-card-stat {
+      font-family: var(--ff-mono); font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: .04em;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    @media (max-width: 900px) { .ab-work-grid { grid-template-columns: 1fr; } }
+
+    /* Stack tools */
+    .ab-stack-wrap {
+      max-width: 1280px; margin: 0 auto;
+      padding: clamp(80px,10vw,130px) clamp(20px,5vw,56px);
+    }
+    .ab-stack-head { text-align: center; margin-bottom: 36px; }
+    .ab-stack-grid {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      justify-content: center;
+      max-width: 900px; margin: 0 auto;
+    }
+    .ab-stack-tag {
+      font-family: var(--ff-mono); font-size: 12px;
+      padding: 10px 18px;
+      background: var(--cream-2);
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      color: var(--ink-2);
+      letter-spacing: .04em;
+      transition: all .25s var(--ease);
+    }
+    .ab-stack-tag:hover {
+      background: var(--ink); color: var(--cream); border-color: var(--ink);
+    }
+
+    /* Bottom CTA */
+    .ab-cta {
+      padding: clamp(80px, 10vw, 120px) clamp(20px,5vw,56px);
+      text-align: center;
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .ab-cta h2 {
+      font-family: var(--ff-mono); font-weight: 700;
+      font-size: clamp(40px, 8vw, 96px);
+      line-height: 0.95; letter-spacing: -0.05em;
+      text-transform: lowercase;
+      max-width: 1100px; margin: 0 auto 24px;
+    }
+    .ab-cta h2 em { font-family: var(--ff-serif); font-style: italic; font-weight: 400; color: var(--lime); }
+    .ab-cta-sub {
+      font-family: var(--ff-sans); font-size: 17px;
+      color: rgba(255,255,255,0.65);
+      max-width: 480px; margin: 0 auto 36px;
+      line-height: 1.55;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═════════ NAV ═════════ -->
+<nav>
+  <a href="/" class="logo"><span class="logo-dot"></span>AYN/AI ⦿</a>
+  <div class="nav-right">
+    <a href="/services.html" class="nav-link">Services</a>
+    <a href="/work.html" class="nav-link">Work</a>
+    <a href="/about.html" class="nav-link" style="color:var(--coral);">About</a>
+    <a href="https://calendly.com/aryankhudlain2004/new-meeting" target="_blank" rel="noopener" class="nav-btn">Book a Call</a>
+  </div>
+</nav>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- ═════════ HERO ═════════ -->
+<section class="ab-hero">
+  <div class="ab-hero-inner">
+    <div class="hero-kicker" style="color:var(--muted); border-color:var(--line-2); background:rgba(0,0,0,0.02); backdrop-filter:none;">
+      FOUNDER · 001
+    </div>
+    <h1>one founder.<br>zero <em>layers.</em></h1>
+  </div>
+</section>
+
+<!-- ═════════ FOUNDER BLOCK ═════════ -->
+<section class="ab-founder">
+  <!-- TODO: Replace with Aryan's headshot photo -->
+  <div class="ab-photo fade">A</div>
+
+  <div class="fade">
+    <h2 class="ab-name">aryan khudlain<em>.</em></h2>
+    <div class="ab-role">Founder &amp; CEO · AYN/AI</div>
+
+    <div class="ab-bio">
+      <p>I'm Aryan. 21 years old, based in Delhi. I started AYN AI because I kept watching good businesses drown in admin work that software should've handled years ago.</p>
+      <p>I've built AI systems for businesses across India and the USA. Cold email engines, voice bots, chatbots, full automation stacks. If you're tired of answering the same questions and chasing leads manually, we should probably talk.</p>
+    </div>
+
+    <div class="ab-sig-row">
+      <img src="/images/aryan-signature.png" alt="Aryan Khudlain signature" class="ab-sig" loading="lazy">
+
+      <div class="ab-social">
+        <a href="mailto:aryan@aynai.me" aria-label="Email">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+        <!-- TODO: Add real social URLs -->
+        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <!-- TODO: Add real social URLs -->
+        <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="ab-stats">
+      <div class="ab-stat">
+        <div class="ab-stat-n">3<em>+</em></div>
+        <div class="ab-stat-l">AI Systems in Production</div>
+      </div>
+      <div class="ab-stat">
+        <div class="ab-stat-n">$15<em>k+</em></div>
+        <div class="ab-stat-l">Automation Value Delivered</div>
+      </div>
+      <div class="ab-stat">
+        <div class="ab-stat-n">48<em>hr</em></div>
+        <div class="ab-stat-l">Typical Turnaround</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ WHAT I'VE BUILT ═════════ -->
+<div class="ab-work-wrap">
+  <div class="ab-work-inner">
+    <div class="ab-work-head fade">
+      <div class="ab-work-kicker">What I've Built</div>
+      <h2 class="ab-work-title">three systems<br><em>shipped.</em></h2>
+    </div>
+
+    <div class="ab-work-grid">
+      <a href="/work.html#case-1" class="ab-work-card fade">
+        <div class="ab-work-card-cat">Cold Email Engine · India</div>
+        <h3 class="ab-work-card-title">welUp <em>outbound.</em></h3>
+        <p class="ab-work-card-desc">Fully automated outreach for a B2B health benefits company. AI personalization, WhatsApp tracking, multi-sender setup, real time hot lead alerts.</p>
+        <div class="ab-work-card-stat">3,075 emails · 17.1% CTR · $15/mo infra</div>
+      </a>
+
+      <a href="/work.html#case-3" class="ab-work-card fade">
+        <div class="ab-work-card-cat">AI Voice Bot · India</div>
+        <h3 class="ab-work-card-title">fintech <em>recovery agent.</em></h3>
+        <p class="ab-work-card-desc">Real-time Hinglish voice bot for a fintech NBFC. Built on Node.js + Groq + Sarvam. Handles thousands of outbound calls. Recovers ₹20Cr in overdue loans.</p>
+        <div class="ab-work-card-stat">17x ROI at pilot · 22.8x at scale</div>
+      </a>
+
+      <a href="/work.html#case-2" class="ab-work-card fade">
+        <div class="ab-work-card-cat">Real Estate AI · USA</div>
+        <h3 class="ab-work-card-title">demo <em>real estate.</em></h3>
+        <p class="ab-work-card-desc">Live AI-powered real estate site for the US market. Chatbot, instant property search, qualified lead capture and same-day booking.</p>
+        <div class="ab-work-card-stat">Live at demo.aynai.me</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ═════════ STACK ═════════ -->
+<div class="ab-stack-wrap">
+  <div class="ab-stack-head fade">
+    <div class="hero-kicker" style="color:var(--muted); border-color:var(--line-2); background:rgba(0,0,0,0.02); backdrop-filter:none;">
+      Stack · Tools I work with
+    </div>
+  </div>
+  <div class="ab-stack-grid fade">
+    <span class="ab-stack-tag">n8n</span>
+    <span class="ab-stack-tag">GPT-4o</span>
+    <span class="ab-stack-tag">AWS SES</span>
+    <span class="ab-stack-tag">Supabase</span>
+    <span class="ab-stack-tag">Groq</span>
+    <span class="ab-stack-tag">Sarvam AI</span>
+    <span class="ab-stack-tag">Exotel</span>
+    <span class="ab-stack-tag">Next.js</span>
+    <span class="ab-stack-tag">Vercel</span>
+    <span class="ab-stack-tag">Instantly</span>
+    <span class="ab-stack-tag">Apollo</span>
+    <span class="ab-stack-tag">Vapi</span>
+    <span class="ab-stack-tag">Retell</span>
+    <span class="ab-stack-tag">Twilio</span>
+    <span class="ab-stack-tag">Make</span>
+    <span class="ab-stack-tag">WhatsApp API</span>
+  </div>
+</div>
+
+<!-- ═════════ CTA ═════════ -->
+<div class="ab-cta">
+  <h2>want to<br><em>work together?</em></h2>
+  <p class="ab-cta-sub">30 minute call. No pressure. We'll figure out if there's something worth building for your business.</p>
+  <a href="https://calendly.com/aryankhudlain2004/new-meeting" target="_blank" rel="noopener" class="btn btn-lime" style="font-size:14px; padding:16px 28px;">
+    Book a Free Call ↗
+  </a>
+</div>
+
+<!-- ═════════ FOOTER ═════════ -->
+<footer>
+  <div class="ft-grid" style="margin-top:0; border-top:none;">
+    <div class="ft-col">
+      <h4>Contact</h4>
+      <a href="mailto:aryan@aynai.me">aryan@aynai.me</a>
+      <a href="https://calendly.com/aryankhudlain2004/new-meeting" target="_blank" rel="noopener">Book a Call ↗</a>
+    </div>
+    <div class="ft-col">
+      <h4>Social</h4>
+      <!-- TODO: Add real social URLs -->
+      <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <!-- TODO: Add real social URLs -->
+      <a href="https://twitter.com" target="_blank" rel="noopener">Twitter / X ↗</a>
+    </div>
+    <div class="ft-col">
+      <h4>Pages</h4>
+      <a href="/services.html">Services</a>
+      <a href="/work.html">Work</a>
+      <a href="/about.html">About</a>
+    </div>
+    <div class="ft-col">
+      <h4>Sitemap</h4>
+      <a href="/">Home</a>
+      <a href="/services.html">Services</a>
+      <a href="/work.html">Work</a>
+      <a href="/about.html">About</a>
+    </div>
+  </div>
+
+  <div class="ft-bottom">
+    <span>© 2025 AYN/AI · All rights reserved</span>
+    <span>Direction · Tech · Automation</span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+  const cursor = document.getElementById('cursor');
+  if (cursor) {
+    window.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button, .ab-work-card, .btn, .ab-stack-tag').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('big'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+    });
+  }
+</script>
+
+</body>
+</html>

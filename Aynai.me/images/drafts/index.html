@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AYN/AI — Logo Drafts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #efeeec;
+      color: #0a0a0a;
+      font-family: 'DM Sans', sans-serif;
+      padding: 80px clamp(20px, 5vw, 60px);
+      min-height: 100vh;
+    }
+
+    header {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      text-align: center;
+    }
+    .kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #ff4c24;
+      margin-bottom: 16px;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .kicker::before { content: '●'; }
+    h1 {
+      font-family: 'Space Mono', monospace;
+      font-weight: 700;
+      font-size: clamp(36px, 6vw, 64px);
+      letter-spacing: -.04em;
+      text-transform: lowercase;
+      line-height: 1;
+    }
+    h1 em {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic; font-weight: 400;
+      color: #ff4c24;
+    }
+    .sub {
+      color: #5a5a55;
+      font-size: 16px;
+      margin-top: 16px;
+      max-width: 540px;
+      margin-left: auto; margin-right: auto;
+      line-height: 1.55;
+    }
+
+    .grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 720px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 18px;
+      padding: 36px 32px 28px;
+      text-align: center;
+      transition: transform .3s ease, box-shadow .3s ease;
+      cursor: default;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+    }
+
+    .num {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .14em;
+      color: #5a5a55;
+      margin-bottom: 24px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .num .lab {
+      color: #ff4c24;
+    }
+    .num .pick {
+      font-size: 9px;
+      padding: 4px 9px;
+      background: #0a0a0a;
+      color: #efeeec;
+      border-radius: 100px;
+    }
+
+    .visual {
+      width: 220px;
+      height: 220px;
+      margin: 0 auto 28px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .visual svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .meta {
+      padding-top: 22px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .title {
+      font-family: 'Space Mono', monospace;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -.02em;
+      text-transform: lowercase;
+      margin-bottom: 8px;
+    }
+    .title em {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic; font-weight: 400;
+      color: #ff4c24;
+    }
+    .desc {
+      font-size: 13.5px;
+      color: #5a5a55;
+      line-height: 1.55;
+    }
+
+    /* Tiny preview row at bottom of card showing how it looks at favicon size */
+    .scale-row {
+      display: flex; gap: 10px; align-items: center; justify-content: center;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px dashed rgba(0,0,0,0.08);
+    }
+    .scale-row svg {
+      display: block;
+    }
+    .scale-row .lbl {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: #5a5a55;
+      letter-spacing: .08em;
+    }
+
+    .current-tag {
+      background: #c3ff00;
+      color: #0a0a0a;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: #5a5a55;
+    }
+    footer code {
+      padding: 2px 8px;
+      background: rgba(0,0,0,0.05);
+      border-radius: 4px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="kicker">LOGO DRAFTS · 005</div>
+  <h1>pick a <em>direction.</em></h1>
+  <p class="sub">5 mark variations for AYN/AI. Same brand palette: ink, cream, lime, coral. Tell me which one and I'll lock it in across the site, favicon, and social avatars.</p>
+</header>
+
+<div class="grid">
+
+  <!-- CURRENT (the one already shipped) -->
+  <div class="card">
+    <div class="num">
+      <span><span class="lab">●</span> CURRENT — DIAGONAL SLASH</span>
+      <span class="pick current-tag">LIVE</span>
+    </div>
+    <div class="visual">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+        <rect width="256" height="256" rx="56" fill="#06060a"/>
+        <line x1="80" y1="200" x2="176" y2="56"
+              stroke="#ff4c24" stroke-width="28" stroke-linecap="round"/>
+        <circle cx="56" cy="56" r="14" fill="#c3ff00"/>
+        <text x="128" y="232" text-anchor="middle"
+              font-family="Space Mono, monospace" font-size="14" font-weight="700"
+              letter-spacing="3" fill="#fafafa" opacity="0.55">AYN AI</text>
+      </svg>
+    </div>
+    <div class="meta">
+      <div class="title">the slash<em>.</em></div>
+      <p class="desc">Just the brand-defining <span style="color:#ff4c24; font-style:italic; font-family:'Instrument Serif', serif;">/</span> on a dark square + lime accent dot. Clean, abstract, scales to 16px. Mark-only — wordmark sits below as label.</p>
+    </div>
+  </div>
+
+  <!-- DRAFT 1: LETTERFORM A -->
+  <div class="card">
+    <div class="num">
+      <span><span class="lab">●</span> DRAFT 1 — LETTERFORM</span>
+      <span class="pick">[01]</span>
+    </div>
+    <div class="visual">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+        <rect width="256" height="256" rx="56" fill="#06060a"/>
+        <path d="M 76 196 L 128 78" stroke="#fafafa" stroke-width="22" stroke-linecap="round" fill="none"/>
+        <path d="M 180 196 L 128 78" stroke="#fafafa" stroke-width="22" stroke-linecap="round" fill="none"/>
+        <path d="M 100 152 L 156 152" stroke="#fafafa" stroke-width="18" stroke-linecap="round" fill="none"/>
+        <line x1="138" y1="62" x2="208" y2="34" stroke="#ff4c24" stroke-width="14" stroke-linecap="round"/>
+        <circle cx="216" cy="30" r="6" fill="#c3ff00"/>
+      </svg>
+    </div>
+    <div class="meta">
+      <div class="title">the <em>A.</em></div>
+      <p class="desc">Bold geometric "A" with a coral italic slash flourish extending past the apex. The letter you can read + the brand mark fused together. Reads as both initial and signature.</p>
+    </div>
+    <div class="scale-row">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="64" height="64">
+        <rect width="256" height="256" rx="56" fill="#06060a"/>
+        <path d="M 76 196 L 128 78" stroke="#fafafa" stroke-width="22" stroke-linecap="round" fill="none"/>
+        <path d="M 180 196 L 128 78" stroke="#fafafa" stroke-width="22" stroke-linecap="round" fill="none"/>
+        <path d="M 100 152 L 156 152" stroke="#fafafa" stroke-width="18" stroke-linecap="round" fill="none"/>
+        <line x1="138" y1="62" x2="208" y2="34" stroke="#ff4c24" stroke-width="14" stroke-linecap="round"/>
+        <circle cx="216" cy="30" r="6" fill="#c3ff00"/>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32">
+        <rect width="256" height="256" rx="56" fill="#06060a"/>
+        <path d="M 76 196 L 128 78" stroke="#fafafa" stroke-width="22" stroke-linecap="round" fill="none"/>
+        <path d="M 180 196 L 128 78" stroke="#fafafa" stroke-width="22" stroke-linecap="round" fill="none"/>
+        <path d="M 100 152 L 156 152" stroke="#fafafa" stroke-width="18" stroke-linecap="round" fill="none"/>
+        <line x1="138" y1="62" x2="208" y2="34" stroke="#ff4c24" stroke-width="14" stroke-linecap="round"/>
+      </svg>
+      <span class="lbl">64PX · 32PX</span>
+    </div>
+  </div>
+
+  <!-- DRAFT 2: A/I MONOGRAM -->
+  <div class="card">
+    <div class="num">
+      <span><span class="lab">●</span> DRAFT 2 — MONOGRAM</span>
+      <span class="pick">[02]</span>
+    </div>
+    <div class="visual">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+        <rect width="256" height="256" rx="56" fill="#06060a"/>
+        <path d="M 50 184 L 90 76 L 130 184" stroke="#fafafa" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M 65 152 L 115 152" stroke="#fafafa" stroke-width="14" stroke-linecap="round" fill="none"/>
+        <line x1="142" y1="200" x2="166" y2="56" stroke="#ff4c24" stroke-width="14" stroke-linecap="round"/>
+        <line x1="200" y1="76" x2="200" y2="184" stroke="#fafafa" stroke-width="16" stroke-linecap="round"/>
+        <line x1="184" y1="76" x2="216" y2="76" stroke="#fafafa" stroke-width="14" stroke-linecap="round"/>
+        <line x1="184" y1="184" x2="216" y2="184" stroke="#fafafa" stroke-width="14" stroke-linecap="round"/>
+        <circle cx="36" cy="36" r="7" fill="#c3ff00"/>
+      </svg>
+    </div>
+    <div class="meta">
+      <div class="title">A <em>/</em> I.</div>
+      <p class="desc">Compact "A / I" monogram. The whole brand spelled out with the coral slash holding center. Reads instantly. The most literal of the bunch.</p>
+    </div>
+    <div class="scale-row">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="64" height="64">
+        <rect width="256" height="256" rx="56" fill="#06060a"/>
+        <path d="M 50 184 L 90 76 L 130 184" stroke="#fafafa" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M 65 152 L 115 152" stroke="#fafafa" stroke-width="14" stroke-linecap="round" fill="none"/>
+        <line x1="142" y1="200" x2="166" y2="56" stroke="#ff4c24" stroke-width="14" stroke-linecap="round"/>
+        <line x1="200" y1="76" x2="200" y2="184" stroke="#fafafa" stroke-width="16" stroke-linecap="round"/>
+        <line x1="184" y1="76" x2="216" y2="76" stroke="#fafafa" stroke-width="14" stroke-linecap="round"/>
+        <line x1="184" y1="184" x2="216" y2="184" stroke="#fafafa" stroke-width="14" stroke-linecap="round"/>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32">
+        <rect width="256" height="256" rx="56" fill="#06060a"/>
+        <path d="M 50 184 L 90 76 L 130 184" stroke="#fafafa" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <line x1="142" y1="200" x2="166" y2="56" stroke="#ff4c24" stroke-width="14" stroke-linecap="round"/>
+        <line x1="200" y1="76" x2="200" y2="184" stroke="#fafafa" stroke-width="16" stroke-linecap="round"/>
+      </svg>
+      <span class="lbl">64PX · 32PX</span>
+    </div>
+  </div>
+
+  <!-- DRAFT 3: GEOMETRIC BRACKETS -->
+  <div class="card">
+    <div class="num">
+      <span><span class="lab">●</span> DRAFT 3 — GEOMETRIC</span>
+      <span class="pick">[03]</span>
+    </div>
+    <div class="visual">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+        <rect width="256" height="256" rx="56" fill="#06060a"/>
+        <path d="M 84 70 L 56 70 L 56 186 L 84 186" stroke="#fafafa" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M 172 70 L 200 70 L 200 186 L 172 186" stroke="#fafafa" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <line x1="106" y1="200" x2="150" y2="56" stroke="#ff4c24" stroke-width="18" stroke-linecap="round"/>
+        <circle cx="36" cy="36" r="7" fill="#c3ff00"/>
+      </svg>
+    </div>
+    <div class="meta">
+      <div class="title">brackets <em>+</em> slash.</div>
+      <p class="desc">Code-bracket frame [ ] containing the coral slash. Says "we build software" without saying it. Tech-feeling, abstract, premium. Pairs cleanly with developer audiences.</p>
+    </div>
+    <div class="scale-row">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="64" height="64">
+        <rect width="256" height="256" rx="56" fill="#06060a"/>
+        <path d="M 84 70 L 56 70 L 56 186 L 84 186" stroke="#fafafa" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M 172 70 L 200 70 L 200 186 L 172 186" stroke="#fafafa" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <line x1="106" y1="200" x2="150" y2="56" stroke="#ff4c24" stroke-width="18" stroke-linecap="round"/>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32">
+        <rect width="256" height="256" rx="56" fill="#06060a"/>
+        <path d="M 84 70 L 56 70 L 56 186 L 84 186" stroke="#fafafa" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M 172 70 L 200 70 L 200 186 L 172 186" stroke="#fafafa" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <line x1="106" y1="200" x2="150" y2="56" stroke="#ff4c24" stroke-width="18" stroke-linecap="round"/>
+      </svg>
+      <span class="lbl">64PX · 32PX</span>
+    </div>
+  </div>
+
+  <!-- DRAFT 4: EYE -->
+  <div class="card">
+    <div class="num">
+      <span><span class="lab">●</span> DRAFT 4 — EYE / AYN</span>
+      <span class="pick">[04]</span>
+    </div>
+    <div class="visual">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+        <rect width="256" height="256" rx="56" fill="#06060a"/>
+        <path d="M 36 128 Q 128 56 220 128 Q 128 200 36 128 Z"
+              stroke="#fafafa" stroke-width="10" fill="none" stroke-linejoin="round"/>
+        <circle cx="128" cy="128" r="34" fill="#ff4c24"/>
+        <circle cx="128" cy="128" r="14" fill="#06060a"/>
+        <circle cx="118" cy="118" r="7" fill="#c3ff00"/>
+        <line x1="106" y1="146" x2="150" y2="110" stroke="#fafafa" stroke-width="3" stroke-linecap="round" opacity="0.55"/>
+      </svg>
+    </div>
+    <div class="meta">
+      <div class="title">the <em>eye.</em></div>
+      <p class="desc">"Ayn" means eye in Arabic. A stylized almond eye with coral iris + lime glint. Symbolic, story-driven, distinct. Stronger personality, slightly less obvious as a tech mark.</p>
+    </div>
+    <div class="scale-row">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="64" height="64">
+        <rect width="256" height="256" rx="56" fill="#06060a"/>
+        <path d="M 36 128 Q 128 56 220 128 Q 128 200 36 128 Z" stroke="#fafafa" stroke-width="10" fill="none" stroke-linejoin="round"/>
+        <circle cx="128" cy="128" r="34" fill="#ff4c24"/>
+        <circle cx="128" cy="128" r="14" fill="#06060a"/>
+        <circle cx="118" cy="118" r="7" fill="#c3ff00"/>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="32" height="32">
+        <rect width="256" height="256" rx="56" fill="#06060a"/>
+        <path d="M 36 128 Q 128 56 220 128 Q 128 200 36 128 Z" stroke="#fafafa" stroke-width="10" fill="none" stroke-linejoin="round"/>
+        <circle cx="128" cy="128" r="32" fill="#ff4c24"/>
+        <circle cx="128" cy="128" r="12" fill="#06060a"/>
+      </svg>
+      <span class="lbl">64PX · 32PX</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  When you've picked one, just say <code>"go with [number]"</code> — I'll lock it in across the site, favicon, social avatars, and the wordmark.
+</footer>
+
+</body>
+</html>

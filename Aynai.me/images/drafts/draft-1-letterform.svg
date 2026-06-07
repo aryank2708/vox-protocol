@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Draft 1 — Letterform A">
+  <rect width="256" height="256" rx="56" fill="#06060a"/>
+
+  <!-- A letterform: left diagonal -->
+  <path d="M 76 196 L 128 78"
+        stroke="#fafafa" stroke-width="22"
+        stroke-linecap="round" fill="none"/>
+  <!-- Right diagonal up to apex -->
+  <path d="M 180 196 L 128 78"
+        stroke="#fafafa" stroke-width="22"
+        stroke-linecap="round" fill="none"/>
+  <!-- Crossbar -->
+  <path d="M 100 152 L 156 152"
+        stroke="#fafafa" stroke-width="18"
+        stroke-linecap="round" fill="none"/>
+
+  <!-- Coral italic slash extending past the apex of the A -->
+  <line x1="138" y1="62" x2="208" y2="34"
+        stroke="#ff4c24" stroke-width="14"
+        stroke-linecap="round"/>
+
+  <!-- Lime accent dot at the slash tip -->
+  <circle cx="216" cy="30" r="6" fill="#c3ff00"/>
+</svg>

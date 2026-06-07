@@ -1,0 +1,38 @@
+<!--
+  AYN/AI · The Aperture · tagline lockup
+  "ai that actually works" + region/year stamp.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 112" role="img" aria-label="AYN/AI — ai that actually works">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&amp;family=Instrument+Serif:ital@1&amp;display=swap');
+      .tg-name { font-family: 'JetBrains Mono', ui-monospace, monospace;
+                 font-weight: 700; font-size: 22px; letter-spacing: -0.5px; }
+      .tg-slash { font-family: 'Instrument Serif', Georgia, serif;
+                  font-style: italic; font-weight: 400; font-size: 30px; }
+      .tg-line { font-family: 'JetBrains Mono', ui-monospace, monospace;
+                 font-weight: 500; font-size: 12px; letter-spacing: 0.5px; }
+      .tg-line em { font-family: 'Instrument Serif', Georgia, serif;
+                    font-style: italic; font-weight: 400; font-size: 14px; }
+      .tg-stamp { font-family: 'JetBrains Mono', ui-monospace, monospace;
+                  font-size: 9px; letter-spacing: 2px; text-transform: uppercase; }
+    </style>
+  </defs>
+
+  <!-- Mark, 56px scaled -->
+  <g transform="translate(0 4) scale(2.333)">
+    <path d="M 22 2 L 22 22 L 2 22 L 13.6 2 Z" fill="#f4f1ea"/>
+    <path d="M 2 1 L 13.6 1 L 2 21 Z" fill="none" stroke="#f4f1ea" stroke-width="0.85" stroke-linejoin="miter"/>
+    <path d="M 14.4 1 L 2.4 21" stroke="#ff5b1f" stroke-width="0.7"/>
+  </g>
+
+  <text x="72" y="32" class="tg-name" fill="#f4f1ea">ayn</text>
+  <text x="124" y="35" class="tg-slash" fill="#ff5b1f">/</text>
+  <text x="146" y="32" class="tg-name" fill="#f4f1ea">ai</text>
+
+  <line x1="72" y1="50" x2="280" y2="50" stroke="#f4f1ea" stroke-width="0.5" opacity="0.25"/>
+
+  <text x="72" y="74" class="tg-line" fill="#f4f1ea" opacity="0.85">ai that <tspan font-family="Instrument Serif, Georgia, serif" font-style="italic" font-weight="400" fill="#ff5b1f" font-size="14">actually</tspan> works</text>
+
+  <text x="72" y="92" class="tg-stamp" fill="#f4f1ea" opacity="0.45">DELHI · NYC · 2026</text>
+</svg>

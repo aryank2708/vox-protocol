@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Status update · AYN AI</title>
+<link rel="icon" href="assets/favicon-cream.svg" />
+<link rel="stylesheet" href="doc.css" />
+</head>
+<body>
+
+<div class="print-bar no-print">
+  <button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+</div>
+
+<article class="page">
+  <header class="doc-head">
+    <a class="brand-lockup">
+      <svg viewBox="0 0 24 24" width="22" height="22"><path d="M 22 2 L 22 22 L 2 22 L 13.6 2 Z" fill="#0b0b0c"/><path d="M 2 1 L 13.6 1 L 2 21 Z" fill="none" stroke="#0b0b0c" stroke-width="0.85"/><path d="M 14.4 1 L 2.4 21" stroke="#c4360a" stroke-width="0.7"/></svg>
+      <span>ayn<span class="slash">/</span>ai</span>
+    </a>
+    <div class="doc-meta">
+      <span>Status</span><b>WK-18</b>
+      <span>Period</span><b>04.28 – 05.04</b>
+      <span>Issued</span><b>05.06.2026</b>
+    </div>
+  </header>
+
+  <div class="doc-kicker">§ Weekly status · welUp</div>
+  <h1 class="doc-title">Week 18 update.</h1>
+  <p class="doc-sub">Cold email engine ran clean all week. Reply rate up, two new senders warmed in, one deliverability incident contained inside 40 minutes.</p>
+
+  <section class="doc-section">
+    <div class="doc-section-head">
+      <span class="doc-section-id">§01</span>
+      <span class="doc-section-tag">numbers · this week</span>
+      <span class="doc-section-rule"></span>
+      <span class="doc-section-time">vs. last week</span>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-tile"><span class="cap">emails sent</span><span class="num">3,075</span><span class="delta up">↑ +412</span></div>
+      <div class="stat-tile"><span class="cap">avg ctr</span><span class="num">17.1%</span><span class="delta up">↑ +2.3</span></div>
+      <div class="stat-tile"><span class="cap">replies</span><span class="num">186</span><span class="delta up">↑ +28</span></div>
+      <div class="stat-tile"><span class="cap">booked calls</span><span class="num">14</span><span class="delta up">↑ +3</span></div>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="doc-section-head">
+      <span class="doc-section-id">§02</span>
+      <span class="doc-section-tag">shipped</span>
+      <span class="doc-section-rule"></span>
+    </div>
+    <table class="line-table">
+      <thead><tr><th style="width:60%">Item</th><th style="width:20%">Status</th><th class="r" style="width:20%">Day</th></tr></thead>
+      <tbody>
+        <tr><td><span class="desc-title">Two new senders warmed in</span><span class="desc-meta">aryan@welup-team.io · sales@welup-corp.io</span></td><td><span class="pill shipped"><span class="dot"></span>shipped</span></td><td class="r mono">Tue</td></tr>
+        <tr><td><span class="desc-title">Subject-line A/B test, sequence 3</span><span class="desc-meta">"30-min audit" beat "free consultation" by 4.1pt CTR.</span></td><td><span class="pill shipped"><span class="dot"></span>shipped</span></td><td class="r mono">Wed</td></tr>
+        <tr><td><span class="desc-title">CRM webhook hardening</span><span class="desc-meta">Retry on 5xx, dead-letter queue.</span></td><td><span class="pill shipped"><span class="dot"></span>shipped</span></td><td class="r mono">Fri</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="doc-section">
+    <div class="doc-section-head">
+      <span class="doc-section-id">§03</span>
+      <span class="doc-section-tag">incidents</span>
+      <span class="doc-section-rule"></span>
+      <span class="doc-section-time">1 this week</span>
+    </div>
+    <div class="note">
+      <span class="note-lbl">Resolved · Wed 11:14 IST</span>
+      Sender <b>sales@welup-team.io</b> hit a Microsoft soft-block after a list segment was uploaded with stale records. Paused the sender, scrubbed the segment against MillionVerifier, resumed at 50% volume. No bounce-rate damage to the broader pool. Total impact: 40 minutes paused, ~120 emails delayed.
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <div class="doc-section-head">
+      <span class="doc-section-id">§04</span>
+      <span class="doc-section-tag">next week</span>
+      <span class="doc-section-rule"></span>
+    </div>
+    <table class="line-table">
+      <thead><tr><th style="width:60%">Item</th><th style="width:20%">Status</th><th class="r" style="width:20%">Owner</th></tr></thead>
+      <tbody>
+        <tr><td><span class="desc-title">Sequence 4 launch · enterprise tier</span></td><td><span class="pill pending"><span class="dot"></span>queued</span></td><td class="r mono">AYN</td></tr>
+        <tr><td><span class="desc-title">Approve copy for sequence 4</span></td><td><span class="pill"><span class="dot"></span>blocking</span></td><td class="r mono">welUp</td></tr>
+        <tr><td><span class="desc-title">Add LinkedIn enrichment to qualifier</span></td><td><span class="pill pending"><span class="dot"></span>queued</span></td><td class="r mono">AYN</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <span class="note-lbl">Asks</span>
+      Need sign-off on the sequence 4 copy by Tuesday EOD or launch slips a week. Draft is in the shared doc.
+    </div>
+  </section>
+
+  <footer class="doc-foot">
+    <span class="left">AYN AI · WK-18 · welUp</span>
+    <span>Page 1 of 1</span>
+    <span class="right">aynai.me</span>
+  </footer>
+</article>
+
+</body>
+</html>

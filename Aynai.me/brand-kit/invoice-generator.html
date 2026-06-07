@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Invoice generator · AYN AI</title>
+<link rel="icon" href="assets/favicon-cream.svg" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;600;700&family=Funnel+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" />
+<link rel="stylesheet" href="generator-shared.css" />
+<link rel="stylesheet" href="ai-chat.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <aside class="form-pane">
+    <div class="form-scroll">
+      <div class="form-head">
+        <span>ayn<span class="slash">/</span>ai</span>
+        <span class="tag">Invoice generator</span>
+      </div>
+      <div class="form-sub">v1 · onboarding</div>
+
+      <p class="hint">Fill the form. Preview updates live. Cmd+P → <b>Save as PDF</b>.</p>
+
+      <div class="form-section">
+        <div class="form-section-head"><span class="num">§01</span> Invoice meta</div>
+        <label><span class="lbl">Invoice number</span><input id="f-number" class="mono" value="INV-2026-001" /></label>
+        <div class="row-2">
+          <label><span class="lbl">Issued</span><input id="f-issued" class="mono" type="date" /></label>
+          <label><span class="lbl">Due</span><input id="f-due" class="mono" type="date" /></label>
+        </div>
+        <div class="row-2">
+          <label><span class="lbl">Currency</span>
+            <select id="f-currency">
+              <option value="USD">USD</option><option value="INR">INR</option>
+              <option value="EUR">EUR</option><option value="GBP">GBP</option>
+            </select>
+          </label>
+          <label><span class="lbl">Net (days)</span><input id="f-net" class="mono" value="3" /></label>
+        </div>
+        <label><span class="lbl">Subtitle</span><input id="f-subtitle" /></label>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-head"><span class="num">§02</span> Bill to</div>
+        <label><span class="lbl">Client name</span><input id="f-client-name" placeholder="Jim Carey" /></label>
+        <label><span class="lbl">Address line 1</span><input id="f-client-addr1" placeholder="Florida, USA" /></label>
+        <label><span class="lbl">Address line 2</span><input id="f-client-addr2" /></label>
+        <label><span class="lbl">Email</span><input id="f-client-email" placeholder="jim@gmail.com" /></label>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-head"><span class="num">§03</span> Line items <span style="margin-left:auto;color:#888581;font-weight:500;" id="items-count">0</span></div>
+        <div id="items-list" class="items-list"></div>
+        <div class="btn-row">
+          <button class="btn" type="button" onclick="addItem()">+ Line item</button>
+          <button class="btn ghost" type="button" onclick="loadOnboardingPreset()">Onboarding preset</button>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-head"><span class="num">§04</span> Tax</div>
+        <label><span class="lbl">Tax rate (%)</span><input id="f-tax" class="mono" value="0" /></label>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-head"><span class="num">§05</span> Pay link</div>
+        <label><span class="lbl">Skydo / Insta link</span><input id="f-pay-link" class="mono" placeholder="https://pay.skydo.com/..." /></label>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-head"><span class="num">§06</span> Footer note</div>
+        <label><span class="lbl">Note label</span><input id="f-note-lbl" value="Guarantee" /></label>
+        <label><span class="lbl">Note body</span><textarea id="f-note-body" rows="3"></textarea></label>
+      </div>
+
+      <details class="json-drawer">
+        <summary>JSON · paste from Claude</summary>
+        <textarea id="json-io" placeholder='{"number":"INV-2026-001", ...}'></textarea>
+        <div class="json-actions">
+          <button class="btn" type="button" onclick="loadJson()">Load JSON</button>
+          <button class="btn ghost" type="button" onclick="exportJson()">Copy current</button>
+        </div>
+      </details>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn primary" type="button" onclick="window.print()">Print / Save PDF</button>
+      <button class="btn ghost" type="button" onclick="resetForm()">Reset</button>
+    </div>
+  </aside>
+
+  <main class="preview-pane">
+    <article class="page" id="invoice">
+      <header class="doc-head">
+        <div class="brand-lockup">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M 22 2 L 22 22 L 2 22 L 13.6 2 Z" fill="#0b0b0c"/><path d="M 2 1 L 13.6 1 L 2 21 Z" fill="none" stroke="#0b0b0c" stroke-width="0.85"/><path d="M 14.4 1 L 2.4 21" stroke="#c4360a" stroke-width="0.7"/></svg>
+          <span>ayn<span class="slash">/</span>ai</span>
+        </div>
+        <div class="doc-meta">
+          <span>Invoice</span><b id="o-number">INV-2026-001</b>
+          <span>Issued</span><b id="o-issued">—</b>
+          <span>Due</span><b id="o-due">—</b>
+        </div>
+      </header>
+
+      <div class="doc-kicker" id="o-kicker">§ Invoice · USD</div>
+      <h1 class="doc-title" id="o-title">Invoice 001.</h1>
+      <p class="doc-sub" id="o-subtitle"></p>
+
+      <section class="parties">
+        <div class="party-block">
+          <span class="party-lbl">From</span>
+          <span class="party-name">AYN AI</span>
+          <span class="party-line">Aryan Khudlain · Founder</span>
+          <span class="party-line">Block A, Connaught Place</span>
+          <span class="party-line">New Delhi 110001, India</span>
+          <span class="party-line">aryan@aynai.me · aynai.me</span>
+        </div>
+        <div class="party-block">
+          <span class="party-lbl">Bill to</span>
+          <span class="party-name" id="o-client-name">—</span>
+          <span class="party-line" id="o-client-addr1"></span>
+          <span class="party-line" id="o-client-addr2"></span>
+          <span class="party-line" id="o-client-email"></span>
+        </div>
+      </section>
+
+      <section class="doc-section">
+        <div class="doc-section-head">
+          <span class="doc-section-id">§01</span><span class="doc-section-tag">line items</span>
+          <span class="doc-section-rule"></span><span class="doc-section-time" id="o-line-count">0 lines</span>
+        </div>
+        <table class="line-table">
+          <thead><tr>
+            <th style="width:48%">Description</th>
+            <th class="r" style="width:10%">Qty</th>
+            <th class="r" style="width:18%">Rate</th>
+            <th class="r" style="width:24%">Amount</th>
+          </tr></thead>
+          <tbody id="o-items"></tbody>
+        </table>
+        <div class="totals">
+          <table class="totals-table">
+            <tr><td>Subtotal</td><td id="o-subtotal">$0.00</td></tr>
+            <tr><td id="o-tax-lbl">Tax (0%)</td><td id="o-tax">$0.00</td></tr>
+            <tr class="grand"><td>Total Due</td><td id="o-total">$0.00</td></tr>
+          </table>
+        </div>
+        <a id="o-pay-btn" class="pay-now-btn" href="#" target="_blank" rel="noopener">
+          <span class="pay-now-lbl">Pay now</span>
+          <span class="pay-now-meta">via Skydo · secure</span>
+          <span class="pay-now-arrow">→</span>
+        </a>
+      </section>
+
+      <section class="doc-section">
+        <div class="doc-section-head">
+          <span class="doc-section-id">§02</span><span class="doc-section-tag">payment</span>
+          <span class="doc-section-rule"></span><span class="doc-section-time" id="o-net">net 3 · two rails</span>
+        </div>
+        <div class="pay-grid" id="o-pay-grid"></div>
+        <div class="note" id="o-note">
+          <span class="note-lbl" id="o-note-lbl">Guarantee</span>
+          <span id="o-note-body"></span>
+        </div>
+      </section>
+
+      <footer class="doc-foot">
+        <span>AYN AI · Connaught Place · New Delhi</span>
+        <span>Page 1 of 1</span>
+        <span id="o-foot-id">aynai.me · INV-2026-001</span>
+      </footer>
+    </article>
+  </main>
+</div>
+
+<script src="generator-shared.js"></script>
+<script src="ai-chat.js"></script>
+<script>
+const G = window.GenLib;
+
+const ONBOARDING_PRESET = {
+  subtitle: 'Cold automation system · build + 3-month retainer. Net 3 from issue date.',
+  items: [
+    { title: 'Cold automation system · build', meta: 'Full system build. One-time fee.', qty: 1, rate: 500 },
+    { title: 'Monthly retainer · Month 1', meta: 'Operations, monitoring & support.', qty: 1, rate: 100 },
+    { title: 'Monthly retainer · Month 2', meta: 'Operations, monitoring & support.', qty: 1, rate: 100 },
+    { title: 'Monthly retainer · Month 3', meta: 'Operations, monitoring & support.', qty: 1, rate: 100 },
+  ]
+};
+
+let state = {
+  number: 'INV-2026-001',
+  issued: G.todayISO(),
+  due: G.addDaysISO(G.todayISO(), 3),
+  currency: 'USD',
+  net: 3,
+  subtitle: ONBOARDING_PRESET.subtitle,
+  client: { name: '', addr1: '', addr2: '', email: '' },
+  items: [],
+  tax: 0,
+  payLink: '',
+  noteLbl: 'Guarantee',
+  noteBody: G.GUARANTEE_TEXT,
+};
+
+function bindInput(id, path, transform) {
+  const el = document.getElementById(id);
+  el.addEventListener('input', () => {
+    const v = transform ? transform(el.value) : el.value;
+    G.setPath(state, path, v);
+    if (id === 'f-issued' || id === 'f-net') {
+      state.due = G.addDaysISO(state.issued, state.net);
+      document.getElementById('f-due').value = state.due;
+    }
+    render();
+  });
+}
+
+function attachBindings() {
+  bindInput('f-number', 'number');
+  bindInput('f-issued', 'issued');
+  bindInput('f-due', 'due');
+  bindInput('f-currency', 'currency');
+  bindInput('f-net', 'net', v => Number(v) || 0);
+  bindInput('f-subtitle', 'subtitle');
+  bindInput('f-client-name', 'client.name');
+  bindInput('f-client-addr1', 'client.addr1');
+  bindInput('f-client-addr2', 'client.addr2');
+  bindInput('f-client-email', 'client.email');
+  bindInput('f-tax', 'tax', v => Number(v) || 0);
+  bindInput('f-pay-link', 'payLink');
+  bindInput('f-note-lbl', 'noteLbl');
+  bindInput('f-note-body', 'noteBody');
+}
+
+function addItem(item) {
+  state.items.push(item || { title: '', meta: '', qty: 1, rate: 0 });
+  renderItemsForm();
+  render();
+}
+function removeItem(idx) { state.items.splice(idx, 1); renderItemsForm(); render(); }
+function updateItem(idx, key, v) {
+  state.items[idx][key] = (key === 'qty' || key === 'rate') ? (Number(v) || 0) : v;
+  render();
+}
+
+function renderItemsForm() {
+  const list = document.getElementById('items-list');
+  document.getElementById('items-count').textContent = state.items.length;
+  list.innerHTML = state.items.map((it, i) => `
+    <div class="item">
+      <button class="x" type="button" onclick="removeItem(${i})">×</button>
+      <label><span class="lbl">Title</span>
+        <input value="${G.escapeAttr(it.title)}" oninput="updateItem(${i}, 'title', this.value)" /></label>
+      <label><span class="lbl">Description</span>
+        <input value="${G.escapeAttr(it.meta)}" oninput="updateItem(${i}, 'meta', this.value)" /></label>
+      <div class="row-2">
+        <label><span class="lbl">Qty</span><input class="mono" value="${it.qty}" oninput="updateItem(${i}, 'qty', this.value)" /></label>
+        <label><span class="lbl">Rate</span><input class="mono" value="${it.rate}" oninput="updateItem(${i}, 'rate', this.value)" /></label>
+      </div>
+    </div>`).join('');
+}
+
+function render() {
+  const c = state.currency;
+  const numShort = state.number.split('-').pop() || state.number;
+  document.getElementById('o-number').textContent = state.number;
+  document.getElementById('o-issued').textContent = G.fmtDate(state.issued);
+  document.getElementById('o-due').textContent = G.fmtDate(state.due);
+  document.getElementById('o-kicker').textContent = `§ Invoice · ${c}`;
+  document.getElementById('o-title').textContent = `Invoice ${numShort}.`;
+  document.getElementById('o-subtitle').textContent = state.subtitle;
+  document.getElementById('o-foot-id').textContent = `aynai.me · ${state.number}`;
+  document.getElementById('o-client-name').textContent = state.client.name || '—';
+  setLine('o-client-addr1', state.client.addr1);
+  setLine('o-client-addr2', state.client.addr2);
+  setLine('o-client-email', state.client.email);
+
+  const tbody = document.getElementById('o-items');
+  if (state.items.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:var(--faint);padding:24px;">No line items.</td></tr>`;
+  } else {
+    tbody.innerHTML = state.items.map(it => {
+      const amt = (it.qty || 0) * (it.rate || 0);
+      return `<tr><td>
+          <span class="desc-title">${G.escapeHtml(it.title) || '—'}</span>
+          ${it.meta ? `<span class="desc-meta">${G.escapeHtml(it.meta)}</span>` : ''}
+        </td>
+        <td class="r mono">${it.qty || 0}</td>
+        <td class="r mono">${G.fmtMoney(it.rate || 0, c)}</td>
+        <td class="r mono">${G.fmtMoney(amt, c)}</td></tr>`;
+    }).join('');
+  }
+  document.getElementById('o-line-count').textContent = `${state.items.length} line${state.items.length === 1 ? '' : 's'}`;
+
+  const subtotal = state.items.reduce((s, it) => s + (it.qty || 0) * (it.rate || 0), 0);
+  const taxAmt = subtotal * (state.tax / 100);
+  document.getElementById('o-subtotal').textContent = G.fmtMoney(subtotal, c);
+  document.getElementById('o-tax-lbl').textContent = `Tax (${state.tax}%)`;
+  document.getElementById('o-tax').textContent = G.fmtMoney(taxAmt, c);
+  document.getElementById('o-total').textContent = G.fmtMoney(subtotal + taxAmt, c);
+
+  const payBtn = document.getElementById('o-pay-btn');
+  const link = (state.payLink || '').trim();
+  if (link) {
+    payBtn.href = link;
+    payBtn.style.display = '';
+  } else {
+    payBtn.removeAttribute('href');
+    payBtn.style.display = 'none';
+  }
+
+  document.getElementById('o-net').textContent = `net ${state.net} · two rails`;
+  const grid = document.getElementById('o-pay-grid');
+  const primary = G.PAY_RAILS[c] || G.PAY_RAILS.USD;
+  const secondary = c === 'INR' ? G.PAY_RAILS.USD : G.PAY_RAILS.INR;
+  grid.innerHTML = `
+    <div class="pay-block"><h3>${primary.title}</h3><div class="bank-text">${primary.body}</div></div>
+    <div class="pay-block"><h3>${secondary.title}</h3><div class="bank-text">${secondary.body}</div></div>`;
+
+  if (state.noteLbl || state.noteBody) {
+    document.getElementById('o-note').style.display = '';
+    document.getElementById('o-note-lbl').textContent = state.noteLbl;
+    document.getElementById('o-note-body').textContent = state.noteBody;
+  } else { document.getElementById('o-note').style.display = 'none'; }
+}
+
+function setLine(id, v) {
+  const el = document.getElementById(id);
+  if (v && v.trim()) { el.textContent = v; el.style.display = ''; }
+  else { el.textContent = ''; el.style.display = 'none'; }
+}
+
+function loadOnboardingPreset() {
+  state.subtitle = ONBOARDING_PRESET.subtitle;
+  state.items = ONBOARDING_PRESET.items.map(i => ({ ...i }));
+  state.net = 3;
+  state.due = G.addDaysISO(state.issued, state.net);
+  syncFormFromState(); render();
+}
+
+function syncFormFromState() {
+  document.getElementById('f-number').value = state.number;
+  document.getElementById('f-issued').value = state.issued;
+  document.getElementById('f-due').value = state.due;
+  document.getElementById('f-currency').value = state.currency;
+  document.getElementById('f-net').value = state.net;
+  document.getElementById('f-subtitle').value = state.subtitle;
+  document.getElementById('f-client-name').value = state.client.name;
+  document.getElementById('f-client-addr1').value = state.client.addr1;
+  document.getElementById('f-client-addr2').value = state.client.addr2;
+  document.getElementById('f-client-email').value = state.client.email;
+  document.getElementById('f-tax').value = state.tax;
+  document.getElementById('f-pay-link').value = state.payLink || '';
+  document.getElementById('f-note-lbl').value = state.noteLbl;
+  document.getElementById('f-note-body').value = state.noteBody;
+  renderItemsForm();
+}
+
+function loadJson() {
+  const txt = document.getElementById('json-io').value.trim();
+  if (!txt) return;
+  try {
+    const data = JSON.parse(txt);
+    state = { ...state, ...data,
+      client: { ...state.client, ...(data.client || {}) },
+      items: Array.isArray(data.items) ? data.items.map(i => ({ ...i })) : state.items };
+    if (state.issued && state.net != null) state.due = G.addDaysISO(state.issued, state.net);
+    syncFormFromState(); render();
+  } catch (e) { alert('Could not parse JSON: ' + e.message); }
+}
+
+function exportJson() {
+  const out = JSON.stringify(state, null, 2);
+  document.getElementById('json-io').value = out;
+  navigator.clipboard?.writeText(out).catch(() => {});
+}
+
+function resetForm() {
+  if (!confirm('Clear the form?')) return;
+  state.client = { name: '', addr1: '', addr2: '', email: '' };
+  state.items = [];
+  syncFormFromState(); render();
+}
+
+attachBindings();
+loadOnboardingPreset();
+syncFormFromState();
+render();
+
+// AI chat
+window.AIChat?.mountChat({
+  docType: 'invoice',
+  getState: () => state,
+  applyJson: (patch) => {
+    state = { ...state, ...patch,
+      client: { ...state.client, ...(patch.client || {}) },
+      items: Array.isArray(patch.items) ? patch.items.map(i => ({ ...i })) : state.items };
+    if (patch.issued && state.net != null) state.due = G.addDaysISO(state.issued, state.net);
+    syncFormFromState(); render();
+  },
+  schemaHint: `{
+    number: string (e.g. "INV-2026-001"),
+    issued: ISO date,
+    due: ISO date,
+    currency: "USD"|"INR"|"EUR"|"GBP",
+    net: number (days),
+    subtitle: string,
+    client: { name, addr1, addr2, email },
+    items: [{ desc, qty: number, unit: number }]
+  }`,
+  examples: 'e.g. invoice welUp $500 build + 3×$100 retainer · jane@welup.io · due in 3 days'
+});
+</script>
+
+</body>
+</html>

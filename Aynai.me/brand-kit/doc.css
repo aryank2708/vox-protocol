@@ -1,0 +1,440 @@
+/* ============================================================
+   AYN AI · Document System
+   Shared styles for client-facing documents.
+   Lighter than the site, same type system + brand tokens.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;600;700&family=Funnel+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap');
+
+:root {
+  /* Light surfaces (the document is paper, not terminal) */
+  --paper:      #faf8f3;       /* page bg */
+  --paper-2:    #f4f1ea;       /* inset blocks, table headers */
+  --paper-3:    #ebe6d8;       /* hairline-adjacent fills */
+  --rule:       rgba(11,11,12,0.10);
+  --rule-soft:  rgba(11,11,12,0.05);
+
+  /* Foreground */
+  --ink:        #0b0b0c;       /* headings, big numbers */
+  --graphite:   #2a2a2e;       /* body */
+  --muted:      #6b6862;       /* labels, captions */
+  --faint:      #9a958c;       /* meta, page numbers */
+
+  /* Brand */
+  --solder:     #ff5b1f;       /* live, on-screen */
+  --solder-deep:#c4360a;       /* print-safe, document accent */
+  --signal:     #1f8a5b;       /* "live"/positive in docs (mint reads weak on paper) */
+
+  /* Type sizes (print-aware) */
+  --t-hero: 56px;
+  --t-h1: 36px;
+  --t-h2: 22px;
+  --t-h3: 16px;
+  --t-body: 13px;
+  --t-small: 11px;
+  --t-mono: 11px;
+  --t-mono-sm: 10px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: #d9d4c5;          /* the "desk" behind the page */
+  color: var(--graphite);
+  font-family: 'Funnel Sans', system-ui, sans-serif;
+  font-size: var(--t-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ============================================================
+   PAGE — A4-ish letter, scaled to viewport
+   ============================================================ */
+.page {
+  width: 816px;                 /* US Letter @ 96dpi */
+  min-height: 1056px;
+  margin: 32px auto;
+  background: var(--paper);
+  color: var(--graphite);
+  position: relative;
+  padding: 56px 64px 80px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 24px 60px -20px rgba(0,0,0,0.25);
+}
+
+@media print {
+  html, body { background: #fff; }
+  .page { box-shadow: none; margin: 0; width: auto; min-height: auto; padding: 48px 56px; }
+  .page + .page { page-break-before: always; }
+  .no-print { display: none !important; }
+}
+
+/* ============================================================
+   DOC HEADER (logo + meta)
+   ============================================================ */
+.doc-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 32px;
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.brand-lockup .slash {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--solder-deep);
+  font-size: 24px;
+  margin: 0 1px;
+}
+
+.doc-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--t-mono-sm);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 4px 14px;
+  white-space: nowrap;
+  justify-content: end;
+  text-align: right;
+}
+.doc-meta span { display: contents; }
+.doc-meta b { color: var(--ink); font-weight: 500; justify-self: end; }
+
+/* ============================================================
+   DOC TITLE BLOCK
+   ============================================================ */
+.doc-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--t-mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--solder-deep);
+  margin-bottom: 14px;
+}
+.doc-title {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 700;
+  font-size: var(--t-hero);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin: 0 0 12px;
+}
+.doc-sub {
+  font-family: 'Funnel Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 60ch;
+  margin: 0 0 32px;
+}
+
+/* ============================================================
+   PARTIES (FROM / TO blocks)
+   ============================================================ */
+.parties {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  padding: 20px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 32px;
+}
+.party-block .party-lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--t-mono-sm);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+  display: block;
+}
+.party-block .party-name {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 4px;
+}
+.party-block .party-line {
+  display: block;
+  font-size: 13px;
+  color: var(--graphite);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   SECTION — used inside docs
+   ============================================================ */
+.doc-section {
+  margin: 32px 0;
+}
+.doc-section-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--t-mono-sm);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.doc-section-id { color: var(--solder-deep); white-space: nowrap; }
+.doc-section-tag { color: var(--ink); white-space: nowrap; }
+.doc-section-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+  min-width: 24px;
+}
+.doc-section-time { color: var(--faint); white-space: nowrap; }
+
+.doc-section h2 {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 700;
+  font-size: var(--t-h1);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin: 0 0 14px;
+}
+.doc-section h3 {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 600;
+  font-size: var(--t-h2);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+.doc-section p {
+  margin: 0 0 12px;
+  color: var(--graphite);
+  font-size: var(--t-body);
+  line-height: 1.6;
+}
+.doc-section p b, .doc-section p strong { color: var(--ink); font-weight: 600; }
+
+/* ============================================================
+   TABLES (line items, status, etc.)
+   ============================================================ */
+.line-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--t-body);
+}
+.line-table thead th {
+  text-align: left;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: var(--t-mono-sm);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 10px 12px;
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--rule);
+}
+.line-table thead th.r { text-align: right; }
+.line-table tbody td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+.line-table tbody td.r { text-align: right; }
+.line-table tbody td.mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+.line-table .desc-title {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  display: block;
+  margin-bottom: 2px;
+}
+.line-table .desc-meta {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* totals */
+.totals {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+.totals-table {
+  width: 320px;
+  border-collapse: collapse;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--t-body);
+  font-feature-settings: "tnum" 1;
+}
+.totals-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--rule);
+}
+.totals-table td:last-child { text-align: right; }
+.totals-table .grand td {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  border-bottom: none;
+  padding-top: 16px;
+  border-top: 2px solid var(--ink);
+}
+
+/* ============================================================
+   CALLOUT / STATUS PILLS
+   ============================================================ */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 99px;
+  border: 1px solid var(--rule);
+  background: var(--paper-2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--t-mono-sm);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+.pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
+.pill.live .dot { background: var(--signal); }
+.pill.pending .dot { background: var(--solder); }
+.pill.shipped { color: var(--signal); border-color: rgba(31,138,91,0.25); background: rgba(31,138,91,0.06); }
+.pill.shipped .dot { background: var(--signal); }
+
+/* ============================================================
+   STAT TILES (light variant)
+   ============================================================ */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.stat-tile {
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.stat-tile .cap {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--t-mono-sm);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.stat-tile .num {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  font-feature-settings: "tnum" 1;
+}
+.stat-tile .delta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--t-mono-sm);
+}
+.stat-tile .delta.up { color: var(--signal); }
+.stat-tile .delta.down { color: var(--solder-deep); }
+
+/* ============================================================
+   NOTE / CALLOUT BLOCKS
+   ============================================================ */
+.note {
+  border-left: 2px solid var(--solder-deep);
+  background: var(--paper-2);
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: var(--t-body);
+  line-height: 1.55;
+}
+.note .note-lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--t-mono-sm);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--solder-deep);
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.doc-foot {
+  position: absolute;
+  left: 64px;
+  right: 64px;
+  bottom: 32px;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--t-mono-sm);
+  letter-spacing: 0.12em;
+  color: var(--faint);
+}
+.doc-foot .left { text-align: left; }
+.doc-foot .right { text-align: right; }
+
+/* ============================================================
+   PRINT BUTTON (no-print)
+   ============================================================ */
+.print-bar {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 100;
+  display: flex;
+  gap: 8px;
+}
+.print-btn {
+  font-family: 'Funnel Sans', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.print-btn:hover { background: var(--graphite); }

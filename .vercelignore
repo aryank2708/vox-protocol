@@ -1,0 +1,12 @@
+node_modules
+.git
+.env
+.env.local
+contracts/out
+contracts/cache
+contracts/broadcast
+contracts/lib
+Aynai.me
+shared
+*.log
+.DS_Store

@@ -1,0 +1,20 @@
+{
+  "name": "vox-protocol",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Vox Protocol — onchain identity, proof-of-call, and reputation/escrow rails for voice AI agents on Monad testnet",
+  "scripts": {
+    "build:contracts": "cd contracts && forge build",
+    "test:contracts": "cd contracts && forge test -vv",
+    "deploy:monad": "cd contracts && forge script script/Deploy.s.sol --rpc-url https://testnet-rpc.monad.xyz --broadcast -vvv",
+    "extract-abi": "cd backend && node scripts/extract-abi.js",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev": "concurrently -k -n backend,frontend -c magenta,cyan \"npm:dev:backend\" \"npm:dev:frontend\"",
+    "vercel-build": "cd frontend && npm install && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}

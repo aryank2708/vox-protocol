@@ -1,0 +1,2195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>AYN/AI · Brand Kit</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;600;700;800&family=Funnel+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon-cream.svg" />
+<style>
+/* ============================================================
+   AYN/AI · Brand Kit
+   Single-page reference. Operations Console aesthetic.
+   ============================================================ */
+
+:root {
+  --ink:        #0b0b0c;
+  --surface:    #15151a;
+  --surface-2:  #1d1e25;
+  --surface-3:  #2a2b34;
+  --rule:       rgba(244,241,234,0.10);
+  --rule-soft:  rgba(244,241,234,0.06);
+
+  --fg:         #f4f1ea;
+  --fg-2:       rgba(244,241,234,0.74);
+  --fg-3:       rgba(244,241,234,0.52);
+  --muted:      rgba(244,241,234,0.42);
+
+  --solder:     #ff5b1f;
+  --solder-deep:#c4360a;
+  --signal:     #5ee6c1;
+  --paper:      #faf8f3;
+  --paper-2:    #f4f1ea;
+
+  --ease:       cubic-bezier(.2,.7,.2,1);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--fg);
+  font-family: 'Funnel Sans', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.92em;
+  background: var(--surface-2);
+  padding: 1px 6px;
+  border-radius: 3px;
+  color: var(--fg);
+}
+
+/* ============================================================
+   LAYOUT — sticky rail + content
+   ============================================================ */
+.shell {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
+}
+
+/* Rail */
+.rail {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  border-right: 1px solid var(--rule);
+  background: var(--ink);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  overflow-y: auto;
+}
+.rail-brand {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+.rail-brand .slash {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--solder);
+  font-size: 22px;
+  margin: 0 1px;
+}
+.rail-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex; flex-direction: column; gap: 4px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--rule);
+}
+.rail-meta b { color: var(--fg); font-weight: 500; }
+
+.rail nav { display: flex; flex-direction: column; gap: 4px; }
+.rail nav h6 {
+  margin: 18px 0 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+.rail nav a {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--fg-2);
+  padding: 6px 8px;
+  border-radius: 3px;
+  transition: background .15s var(--ease), color .15s var(--ease);
+}
+.rail nav a:hover { background: var(--surface-2); color: var(--fg); }
+.rail nav a .num { color: var(--solder); width: 28px; flex: none; }
+
+.rail-foot {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.rail-foot a { color: var(--fg-2); }
+.rail-foot a:hover { color: var(--solder); }
+
+/* Content */
+.content {
+  padding: 48px 64px 120px;
+  max-width: 1200px;
+}
+
+/* ============================================================
+   COVER
+   ============================================================ */
+.cover {
+  padding: 32px 0 80px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 64px;
+}
+.cover-meta {
+  display: flex; align-items: center; gap: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.cover-meta .id { color: var(--solder); }
+.cover-meta .tag { color: var(--fg); }
+.cover-meta .spacer { flex: 1; height: 1px; background: var(--rule); }
+
+.cover-title {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 700;
+  font-size: clamp(56px, 8vw, 120px);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  color: var(--fg);
+  margin: 0 0 24px;
+  max-width: 12ch;
+}
+.cover-sub {
+  font-family: 'Funnel Sans', sans-serif;
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--fg-2);
+  max-width: 60ch;
+  margin: 0 0 32px;
+}
+.cover-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 32px;
+}
+.cover-tile {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  border-radius: 4px;
+  padding: 18px 20px;
+  display: flex; flex-direction: column; gap: 8px;
+  min-height: 120px;
+}
+.cover-tile .cap {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.cover-tile .num {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--fg);
+}
+.cover-tile .foot {
+  margin-top: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--fg-3);
+}
+
+/* ============================================================
+   SECTION SHELL
+   ============================================================ */
+.section {
+  padding: 48px 0 64px;
+  border-bottom: 1px solid var(--rule);
+  scroll-margin-top: 24px;
+}
+.section:last-of-type { border-bottom: none; }
+.section-head {
+  display: flex; align-items: center; gap: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+.section-head .id { color: var(--solder); }
+.section-head .tag { color: var(--fg); }
+.section-head .spacer { flex: 1; height: 1px; background: var(--rule); }
+.section-title {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--fg);
+  margin: 0 0 12px;
+}
+.section-sub {
+  font-family: 'Funnel Sans', sans-serif;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--fg-2);
+  max-width: 65ch;
+  margin: 0 0 32px;
+}
+
+.sub-head {
+  display: flex; align-items: center; gap: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 32px 0 14px;
+}
+.sub-head::before {
+  content: '·';
+  color: var(--solder);
+}
+.sub-head .spacer { flex: 1; height: 1px; background: var(--rule-soft); }
+
+/* ============================================================
+   01 · LOGO
+   ============================================================ */
+.logo-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 12px;
+}
+.logo-card {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.logo-card-body {
+  padding: 56px 48px;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 240px;
+}
+.logo-card.light .logo-card-body { background: var(--paper); }
+.logo-card-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px;
+  border-top: 1px solid var(--rule);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.logo-card.light .logo-card-foot { border-top-color: rgba(11,11,12,0.10); background: var(--paper-2); color: var(--ink); }
+.logo-card-foot .lbl { color: var(--muted); }
+.logo-card.light .logo-card-foot .lbl { color: rgba(11,11,12,0.55); }
+.logo-card-foot .file { color: var(--fg-3); }
+.logo-card.light .logo-card-foot .file { color: rgba(11,11,12,0.55); }
+
+.logo-card .wordmark { font-family: 'JetBrains Mono', monospace; font-weight: 800; letter-spacing: -0.02em; font-size: 56px; color: var(--fg); }
+.logo-card .wordmark .slash { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--solder); font-size: 76px; margin: 0 2px; vertical-align: -8px; }
+.logo-card.light .wordmark { color: var(--ink); }
+.logo-card.light .wordmark .slash { color: var(--solder-deep); }
+
+.mark {
+  width: 96px; height: 96px;
+  border-radius: 12px;
+  background: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--fg);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  position: relative;
+}
+.logo-card.light .mark { background: var(--ink); }
+.mark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: radial-gradient(circle at 28% 38%, rgba(255,91,31,0.18), transparent 55%);
+}
+.mark .glyph { position: relative; z-index: 1; }
+
+/* Construction grid */
+.construction {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 24px;
+}
+.construction-card {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  border-radius: 4px;
+  padding: 32px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.construction-card h4 {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0;
+  color: var(--fg);
+}
+.construction-card p {
+  font-family: 'Funnel Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--fg-2);
+  margin: 0;
+}
+.construction-svg {
+  width: 100%;
+  height: 200px;
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Sizing scale */
+.sizing {
+  display: flex; align-items: flex-end; gap: 32px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  border-radius: 4px;
+  padding: 32px;
+  margin-top: 12px;
+  overflow-x: auto;
+}
+.sizing-item { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; flex: none; }
+.sizing-item .sz-mark { color: var(--fg); font-family: 'JetBrains Mono', monospace; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+.sizing-item .sz-mark .slash { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--solder); }
+.sizing-item .sz-cap { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+/* Don't list */
+.dont-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+.dont-card {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  border-radius: 4px;
+  padding: 24px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.dont-card .demo {
+  height: 90px;
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.dont-card .x-mark {
+  position: absolute; top: 8px; right: 8px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--solder);
+  color: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 800;
+}
+.dont-card .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.dont-card .text {
+  font-family: 'Funnel Sans', sans-serif;
+  font-size: 13px;
+  color: var(--fg-2);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   02 · COLOR
+   ============================================================ */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.swatch {
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.swatch-fill { height: 140px; }
+.swatch-body {
+  padding: 14px 16px;
+  background: var(--surface);
+  display: flex; flex-direction: column; gap: 4px;
+}
+.swatch-body .name {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+.swatch-body .role {
+  font-family: 'Funnel Sans', sans-serif;
+  font-size: 13px;
+  color: var(--fg-2);
+  line-height: 1.45;
+}
+.swatch-body .meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.swatch-body .meta b { color: var(--fg-2); font-weight: 500; }
+
+/* ============================================================
+   03 · TYPE
+   ============================================================ */
+.type-spec {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  border-radius: 4px;
+  padding: 32px;
+  margin-bottom: 12px;
+}
+.type-head {
+  display: flex; align-items: baseline; gap: 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+.type-head .role { color: var(--solder); }
+.type-head .name { color: var(--fg); }
+.type-head .meta { color: var(--muted); margin-left: auto; }
+.type-sample-display {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 700;
+  font-size: 88px;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--fg);
+  margin: 0;
+}
+.type-sample-text {
+  font-family: 'Funnel Sans', sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--fg);
+  max-width: 60ch;
+  margin: 0;
+}
+.type-sample-mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--fg);
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+.type-sample-serif {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--solder);
+  margin: 0;
+}
+
+/* Type scale table */
+.scale-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  margin-top: 12px;
+}
+.scale-table th {
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--rule);
+  background: var(--surface);
+}
+.scale-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: middle;
+  color: var(--fg-2);
+}
+.scale-table .preview { color: var(--fg); font-family: 'Funnel Display', sans-serif; font-weight: 700; letter-spacing: -0.025em; }
+.scale-table .ratio { color: var(--solder); }
+
+/* ============================================================
+   04 · COMPONENTS
+   ============================================================ */
+.comp-row {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  border-radius: 4px;
+  padding: 32px;
+  margin-bottom: 12px;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 32px;
+}
+.comp-meta {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.comp-meta .lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--solder);
+}
+.comp-meta .name {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+.comp-meta .desc {
+  font-family: 'Funnel Sans', sans-serif;
+  font-size: 13px;
+  color: var(--fg-2);
+  line-height: 1.55;
+  margin: 6px 0 0;
+}
+.comp-stage {
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 28px;
+  display: flex; flex-direction: column; gap: 16px;
+  align-items: flex-start;
+}
+.comp-stage.row { flex-direction: row; flex-wrap: wrap; align-items: center; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 10px 18px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  font-family: 'Funnel Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  transition: background .15s var(--ease), border-color .15s var(--ease), color .15s var(--ease);
+}
+/* Live aynai.me uses a text-link CTA with ↗ arrow as primary, plain text as secondary.
+   No filled solder pills. The button is a typographic gesture, not a chrome element. */
+.btn-primary {
+  background: transparent; color: var(--fg);
+  border: none; padding: 10px 0;
+  font-weight: 500; font-size: 16px;
+  border-bottom: 1px solid var(--fg);
+  border-radius: 0;
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.btn-primary::after { content: '↗'; color: var(--solder); font-weight: 400; }
+.btn-primary:hover { color: var(--solder); border-bottom-color: var(--solder); }
+.btn-ghost {
+  background: transparent; color: var(--fg-2);
+  border: none; padding: 10px 0;
+  font-weight: 500; font-size: 16px;
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0;
+}
+.btn-ghost:hover { color: var(--fg); border-bottom-color: var(--fg); }
+.btn-lg { font-size: 18px; padding: 12px 0; }
+.btn-sm { font-size: 13px; padding: 6px 0; }
+
+/* Status pill */
+.pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 4px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 99px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--fg-2);
+  background: var(--surface);
+}
+.pill .dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 10px var(--signal);
+  animation: pulse 3s ease-in-out infinite;
+}
+.pill.solder .dot { background: var(--solder); box-shadow: 0 0 10px var(--solder); }
+.pill.idle .dot { background: var(--fg-3); box-shadow: none; animation: none; }
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Stat tile */
+.tile {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 22px 24px;
+  display: flex; flex-direction: column; gap: 12px;
+  min-width: 220px;
+}
+.tile-cap {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.tile-num {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--fg);
+  font-feature-settings: "tnum" 1;
+}
+.tile-foot {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+}
+.tile-foot .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 6px var(--signal); }
+
+/* Case card */
+.case {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 22px;
+  display: flex; flex-direction: column; gap: 14px;
+  min-width: 320px;
+}
+.case-head {
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.case-id { color: var(--solder); }
+.case-status { display: flex; align-items: center; gap: 6px; color: var(--signal); }
+.case-status .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 6px var(--signal); }
+.case-title {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin: 0;
+}
+.case-meta {
+  display: flex; gap: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* Section header demo */
+.section-demo-stage {
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 28px;
+}
+.section-demo-head {
+  display: flex; align-items: center; gap: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.section-demo-head .id { color: var(--solder); }
+.section-demo-head .tag { color: var(--fg); }
+.section-demo-head .spacer { flex: 1; height: 1px; background: var(--rule); }
+.section-demo h3 {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: -0.03em;
+  color: var(--fg);
+  margin: 0 0 8px;
+}
+.section-demo p {
+  font-family: 'Funnel Sans', sans-serif;
+  font-size: 15px;
+  color: var(--fg-2);
+  margin: 0;
+}
+
+/* ============================================================
+   05 · ICONOGRAPHY
+   ============================================================ */
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+.icon-card {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  border-radius: 4px;
+  padding: 20px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  text-align: center;
+}
+.icon-card .ic {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--fg);
+}
+.icon-card .ic svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.icon-card .name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--fg-2);
+}
+
+/* ============================================================
+   06 · VOICE
+   ============================================================ */
+.voice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.voice-card {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  border-radius: 4px;
+  padding: 28px 32px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.voice-card .lbl {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.voice-card.do .lbl { color: var(--signal); }
+.voice-card.dont .lbl { color: var(--solder); }
+.voice-card .lbl .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.voice-card h4 {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin: 0;
+}
+.voice-card .quote {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin: 8px 0;
+  padding-left: 16px;
+  border-left: 2px solid currentColor;
+}
+.voice-card.do .quote { border-color: var(--signal); }
+.voice-card.dont .quote { border-color: var(--solder); }
+.voice-card .note {
+  font-family: 'Funnel Sans', sans-serif;
+  font-size: 13px;
+  color: var(--fg-2);
+  line-height: 1.55;
+}
+
+.voice-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Funnel Sans', sans-serif;
+  font-size: 14px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.voice-table thead th {
+  text-align: left;
+  padding: 12px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  background: var(--surface);
+  border-bottom: 1px solid var(--rule);
+}
+.voice-table tbody td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  background: var(--surface);
+}
+.voice-table tbody tr:last-child td { border-bottom: none; }
+.voice-table .strike { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--solder); }
+.voice-table .ok { color: var(--fg); }
+
+/* ============================================================
+   07 · MOTION
+   ============================================================ */
+.motion-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.motion-card {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  border-radius: 4px;
+  padding: 28px 32px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.motion-card h4 {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin: 0;
+}
+.motion-card p {
+  font-family: 'Funnel Sans', sans-serif;
+  font-size: 14px;
+  color: var(--fg-2);
+  line-height: 1.55;
+  margin: 0;
+}
+.motion-card .stat-row {
+  display: flex; gap: 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule-soft);
+}
+.motion-card .stat-row b { color: var(--fg); font-weight: 500; }
+
+/* ============================================================
+   08 · APPLICATIONS
+   ============================================================ */
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.app-card {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.app-preview {
+  height: 220px;
+  background: var(--surface-2);
+  display: flex; align-items: stretch; justify-content: stretch;
+  padding: 18px;
+  position: relative;
+  overflow: hidden;
+}
+.app-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px;
+  border-top: 1px solid var(--rule);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.app-foot .name { color: var(--fg); }
+.app-foot .file { color: var(--muted); }
+.app-foot a {
+  color: var(--solder);
+  border: 1px solid var(--rule);
+  padding: 4px 10px;
+  border-radius: 3px;
+  transition: background .15s var(--ease), border-color .15s var(--ease);
+}
+.app-foot a:hover { background: var(--solder); color: var(--ink); border-color: var(--solder); }
+
+/* invoice mini-preview */
+.app-invoice {
+  flex: 1;
+  background: var(--paper);
+  border-radius: 3px;
+  padding: 14px 16px;
+  color: var(--ink);
+  font-family: 'Funnel Sans', sans-serif;
+  font-size: 8px;
+  display: flex; flex-direction: column; gap: 6px;
+  position: relative;
+  overflow: hidden;
+}
+.app-invoice .ai-head { display: flex; justify-content: space-between; padding-bottom: 6px; border-bottom: 1px solid rgba(11,11,12,0.1); }
+.app-invoice .ai-mark { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 10px; }
+.app-invoice .ai-mark .slash { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--solder-deep); }
+.app-invoice .ai-meta { font-family: 'JetBrains Mono', monospace; font-size: 6px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(11,11,12,0.55); text-align: right; }
+.app-invoice .ai-title { font-family: 'Funnel Display', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.04em; line-height: 1; }
+.app-invoice .ai-rows { margin-top: auto; display: flex; flex-direction: column; gap: 3px; font-size: 7px; font-family: 'JetBrains Mono', monospace; color: rgba(11,11,12,0.7); }
+.app-invoice .ai-rows div { display: flex; justify-content: space-between; padding: 2px 0; border-bottom: 1px solid rgba(11,11,12,0.06); }
+.app-invoice .ai-total { display: flex; justify-content: space-between; font-family: 'Funnel Display', sans-serif; font-weight: 700; font-size: 11px; padding-top: 4px; border-top: 1.5px solid var(--ink); }
+
+/* proposal mini-preview */
+.app-proposal {
+  flex: 1;
+  background: var(--paper);
+  border-radius: 3px;
+  padding: 16px;
+  color: var(--ink);
+  display: flex; flex-direction: column; gap: 8px;
+  font-size: 7px;
+}
+.app-proposal .pp-kicker { font-family: 'JetBrains Mono', monospace; font-size: 7px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--solder-deep); }
+.app-proposal .pp-title { font-family: 'Funnel Display', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.04em; line-height: 0.95; max-width: 14ch; }
+.app-proposal .pp-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; padding-top: 6px; border-top: 1px solid rgba(11,11,12,0.1); }
+.app-proposal .pp-cols span { font-family: 'JetBrains Mono', monospace; font-size: 5px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(11,11,12,0.5); }
+.app-proposal .pp-cols b { display: block; font-family: 'Funnel Display', sans-serif; font-weight: 600; font-size: 9px; color: var(--ink); }
+
+/* status mini-preview */
+.app-status {
+  flex: 1;
+  background: var(--paper);
+  border-radius: 3px;
+  padding: 14px 16px;
+  color: var(--ink);
+  display: flex; flex-direction: column; gap: 7px;
+}
+.app-status .ss-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 6px; border-bottom: 1px solid rgba(11,11,12,0.1); }
+.app-status .ss-title { font-family: 'Funnel Display', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: -0.03em; }
+.app-status .ss-week { font-family: 'JetBrains Mono', monospace; font-size: 7px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--solder-deep); }
+.app-status .ss-rows { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; font-size: 8px; }
+.app-status .ss-row { display: grid; grid-template-columns: 38px 1fr; gap: 6px; align-items: center; }
+.app-status .ss-row .pill-tiny { font-family: 'JetBrains Mono', monospace; font-size: 6px; letter-spacing: 0.12em; text-transform: uppercase; padding: 1px 5px; border-radius: 99px; border: 1px solid rgba(11,11,12,0.15); text-align: center; }
+.app-status .ss-row .pill-tiny.go { color: #1f8a5b; border-color: rgba(31,138,91,0.3); }
+.app-status .ss-row .pill-tiny.do { color: var(--solder-deep); border-color: rgba(196,54,10,0.3); }
+
+/* letterhead mini-preview */
+.app-letter {
+  flex: 1;
+  background: var(--paper);
+  border-radius: 3px;
+  padding: 14px 16px;
+  color: var(--ink);
+  display: flex; flex-direction: column; gap: 8px;
+  font-size: 7px;
+}
+.app-letter .lt-head { display: flex; justify-content: space-between; padding-bottom: 6px; border-bottom: 1px solid rgba(11,11,12,0.1); }
+.app-letter .lt-mark { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 10px; letter-spacing: -0.02em; }
+.app-letter .lt-mark .slash { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--solder-deep); }
+.app-letter .lt-meta { font-family: 'JetBrains Mono', monospace; font-size: 6px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(11,11,12,0.55); text-align: right; }
+.app-letter .lt-body { font-family: 'Funnel Sans', sans-serif; font-size: 7px; color: rgba(11,11,12,0.78); line-height: 1.6; max-width: 38ch; }
+.app-letter .lt-body b { color: var(--ink); }
+.app-letter .lt-sig { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 13px; color: var(--ink); margin-top: auto; }
+
+/* signature mini-preview */
+.app-sig {
+  flex: 1;
+  background: var(--paper);
+  border-radius: 3px;
+  padding: 18px 20px;
+  color: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+}
+.app-sig-block {
+  display: grid;
+  grid-template-columns: auto 1px 1fr;
+  gap: 14px;
+  align-items: center;
+}
+.app-sig-block .as-mark { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 16px; letter-spacing: -0.02em; }
+.app-sig-block .as-mark .slash { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--solder-deep); font-size: 22px; }
+.app-sig-block .div { width: 1px; height: 44px; background: rgba(11,11,12,0.18); }
+.app-sig-block .as-meta { display: flex; flex-direction: column; gap: 2px; }
+.app-sig-block .as-name { font-family: 'Funnel Display', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: -0.02em; }
+.app-sig-block .as-role { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.06em; color: rgba(11,11,12,0.6); }
+.app-sig-block .as-link { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--solder-deep); }
+
+/* ============================================================
+   09 · DOWNLOADS
+   ============================================================ */
+.downloads {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.download-card {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  border-radius: 4px;
+  padding: 22px 24px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.download-card h4 {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin: 0;
+}
+.download-card .files {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+.download-card .files a {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 12px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  color: var(--fg-2);
+  transition: border-color .15s var(--ease), color .15s var(--ease);
+}
+.download-card .files a:hover { border-color: var(--solder); color: var(--solder); }
+.download-card .files a span:last-child { color: var(--muted); font-size: 10px; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.kit-foot {
+  border-top: 1px solid var(--rule);
+  padding-top: 32px;
+  margin-top: 64px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1100px) {
+  .shell { grid-template-columns: 1fr; }
+  .rail { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--rule); }
+  .content { padding: 32px 32px 80px; }
+  .cover-grid, .color-grid, .dont-list { grid-template-columns: repeat(2, 1fr); }
+  .icon-grid { grid-template-columns: repeat(4, 1fr); }
+  .comp-row, .voice-grid, .motion-grid, .downloads, .apps-grid, .construction { grid-template-columns: 1fr; gap: 16px; }
+  .logo-grid { grid-template-columns: 1fr; }
+  .section-title { font-size: 36px; }
+}
+@media (max-width: 600px) {
+  .cover-grid, .color-grid, .dont-list { grid-template-columns: 1fr; }
+  .icon-grid { grid-template-columns: repeat(3, 1fr); }
+  .content { padding: 24px 20px 64px; }
+  .cover-title { font-size: clamp(40px, 12vw, 64px); }
+}
+
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- =========================================================
+       RAIL
+       ========================================================= -->
+  <aside class="rail">
+    <div class="rail-brand">
+      <span>ayn<span class="slash">/</span>ai</span>
+    </div>
+    <div class="rail-meta">
+      <span><b>Brand Kit</b></span>
+      <span>v.2026.04 · operations console</span>
+      <span>maintained by aryan</span>
+    </div>
+
+    <nav>
+      <h6>System</h6>
+      <a href="#cover"><span class="num">§00</span><span>Overview</span></a>
+      <a href="#logo"><span class="num">§01</span><span>Logo</span></a>
+      <a href="#color"><span class="num">§02</span><span>Color</span></a>
+      <a href="#type"><span class="num">§03</span><span>Type</span></a>
+      <a href="#components"><span class="num">§04</span><span>Components</span></a>
+      <a href="#icons"><span class="num">§05</span><span>Iconography</span></a>
+
+      <h6>Voice + motion</h6>
+      <a href="#voice"><span class="num">§06</span><span>Voice</span></a>
+      <a href="#motion"><span class="num">§07</span><span>Motion</span></a>
+
+      <h6>In the wild</h6>
+      <a href="#applications"><span class="num">§08</span><span>Applications</span></a>
+      <a href="#downloads"><span class="num">§09</span><span>Downloads</span></a>
+
+      <h6>Generators</h6>
+      <a href="invoice-generator.html"><span class="num">→</span><span>Invoice</span></a>
+      <a href="proposal-generator.html"><span class="num">→</span><span>Proposal</span></a>
+      <a href="status-update-generator.html"><span class="num">→</span><span>Status update</span></a>
+      <a href="onboarding-generator.html"><span class="num">→</span><span>Onboarding</span></a>
+    </nav>
+
+    <div class="rail-foot">
+      <a href="https://aynai.me/" target="_blank" rel="noopener">→ aynai.me</a>
+      <a href="../redesign-deck.html">→ redesign deck</a>
+      <a href="../aperture-identity.html">→ aperture spec</a>
+    </div>
+  </aside>
+
+  <!-- =========================================================
+       CONTENT
+       ========================================================= -->
+  <main class="content">
+
+    <!-- ======================================================
+         COVER
+         ====================================================== -->
+    <section class="cover" id="cover">
+      <div class="cover-meta">
+        <span class="id">§00</span>
+        <span class="tag">brand kit</span>
+        <span class="spacer"></span>
+        <span>v.2026.04</span>
+        <span class="pill"><span class="dot"></span>system online</span>
+      </div>
+
+      <h1 class="cover-title">The system, in one <em>document.</em></h1>
+      <p class="cover-sub">Everything you need to put AYN/AI on a screen, on a page, or in someone's inbox without breaking it. Tokens are locked. Type is fixed. The Aperture mark is the only thing allowed to be loud. Built around the live site at <a href="https://aynai.me/" style="color:var(--solder);text-decoration:none;border-bottom:1px solid var(--solder);">aynai.me ↗</a> — every component here mirrors the vocabulary already on the site.</p>
+
+      <div id="hardcoded" style="margin-top:28px;padding:24px 28px;border:1px solid var(--rule);border-radius:4px;background:var(--surface-2);">
+        <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--solder);margin-bottom:16px;">§00 · hardcoded · single source of truth</span>
+
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px 48px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--fg-2);line-height:1.7;">
+
+          <div>
+            <span style="display:block;color:var(--solder);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:8px;">Identity</span>
+            <div><b style="color:var(--fg);">Founder</b> · Aryan Khudlain</div>
+            <div><b style="color:var(--fg);">Title</b> · Founder</div>
+            <div><b style="color:var(--fg);">Legal entity</b> · Aryan Khudlain (sole prop.)</div>
+            <div><b style="color:var(--fg);">Founded</b> · 1.5+ yrs in automation</div>
+            <div><b style="color:var(--fg);">Domain</b> · aynai.me</div>
+            <div><b style="color:var(--fg);">Tagline</b> · per live site (aynai.me)</div>
+            <div><b style="color:var(--fg);">Copyright</b> · © 2025 AYN/AI · All rights reserved</div>
+          </div>
+
+          <div>
+            <span style="display:block;color:var(--solder);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:8px;">Contact</span>
+            <div><b style="color:var(--fg);">Email</b> · aryan@aynai.me</div>
+            <div><b style="color:var(--fg);">Billing email</b> · aryan@aynai.me</div>
+            <div><b style="color:var(--fg);">Phone</b> · +91 70110 85114</div>
+            <div><b style="color:var(--fg);">WhatsApp</b> · +91 70110 85114 (same)</div>
+            <div><b style="color:var(--fg);">Booking</b> · calendly.com/aryankhudlain2004/new-meeting</div>
+            <div><b style="color:var(--fg);">LinkedIn</b> · linkedin.com/in/aryankhudlain</div>
+          </div>
+
+          <div style="grid-column:1 / -1;">
+            <span style="display:block;color:var(--solder);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:8px;">Address (printed on invoices &amp; letterhead)</span>
+            <div style="color:var(--fg);">Block A, Connaught Place, New Delhi, 110001, India</div>
+          </div>
+
+          <div>
+            <span style="display:block;color:var(--solder);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:8px;">Bank · International (USD · ACH/Wire via Skydo)</span>
+            <div><b style="color:var(--fg);">Beneficiary</b> · Aryan Khudlain</div>
+            <div><b style="color:var(--fg);">Bank</b> · Community Federal Savings Bank</div>
+            <div><b style="color:var(--fg);">Routing (ACH)</b> · 026073150</div>
+            <div><b style="color:var(--fg);">Account no.</b> · 8331708563</div>
+            <div><b style="color:var(--fg);">Beneficiary addr.</b> · 5 Penn Plaza, 14th Fl, New York, NY 10001, US</div>
+            <div><b style="color:var(--fg);">Currency</b> · USD</div>
+          </div>
+
+          <div>
+            <span style="display:block;color:var(--solder);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:8px;">Bank · India (INR · Remitly / Western Union)</span>
+            <div><b style="color:var(--fg);">Account name</b> · Aryan Khudlain</div>
+            <div><b style="color:var(--fg);">Bank</b> · AU Small Finance Bank</div>
+            <div><b style="color:var(--fg);">Branch</b> · Delhi · Shalimar Bagh</div>
+            <div><b style="color:var(--fg);">Account no.</b> · 2401255859763298</div>
+            <div><b style="color:var(--fg);">IFSC</b> · AUBL0002558</div>
+            <div><b style="color:var(--fg);">SWIFT</b> · AUBLINBBXXX</div>
+          </div>
+
+          <div>
+            <span style="display:block;color:var(--solder);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:8px;">Commercial defaults</span>
+            <div><b style="color:var(--fg);">Default currency</b> · USD</div>
+            <div><b style="color:var(--fg);">Payment terms</b> · Net 3 days</div>
+            <div><b style="color:var(--fg);">Tax ID / GSTIN</b> · None</div>
+            <div><b style="color:var(--fg);">Late fee</b> · None</div>
+            <div><b style="color:var(--fg);">Retainer</b> · per-engagement</div>
+            <div><b style="color:var(--fg);">One-time projects</b> · custom scope</div>
+          </div>
+
+          <div>
+            <span style="display:block;color:var(--solder);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:8px;">Support hours</span>
+            <div><b style="color:var(--fg);">Live · IST</b> · Mon–Sat · 10:00–23:00</div>
+            <div><b style="color:var(--fg);">Live · EST</b> · Mon–Sat · 10:00–23:00</div>
+            <div><b style="color:var(--fg);">WhatsApp / Email</b> · 24/7 (async)</div>
+          </div>
+
+          <div style="grid-column:1 / -1;border-top:1px solid var(--rule);padding-top:18px;">
+            <span style="display:block;color:var(--solder);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:8px;">Standard guarantee (goes on proposals)</span>
+            <div style="font-family:'Funnel Sans',sans-serif;font-size:14px;line-height:1.6;color:var(--fg);max-width:880px;">
+              Full refund if the system is not deployed within 21 days of project start. Subject to standard terms &amp; conditions.
+            </div>
+            <div style="font-family:'Funnel Sans',sans-serif;font-size:12px;line-height:1.55;color:var(--muted);margin-top:8px;max-width:880px;font-style:italic;">
+              Internal note (do not surface in client-facing copy): refund excludes hard costs already incurred — third-party tooling, infra, paid APIs, contracted services. Quantify in T&amp;C, not in the headline guarantee.
+            </div>
+          </div>
+
+        </div>
+
+        <div style="margin-top:18px;padding-top:14px;border-top:1px dashed var(--rule);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">
+          Edit only here. Every doc template (invoice, proposal, status update, letterhead, business card) reads from this single source.
+        </div>
+      </div>
+
+      <div class="cover-grid">
+        <div class="cover-tile">
+          <span class="cap">Mark</span>
+          <span class="num">Aperture</span>
+          <span class="foot">approved · round 02</span>
+        </div>
+        <div class="cover-tile">
+          <span class="cap">Display</span>
+          <span class="num">Funnel Display</span>
+          <span class="foot">700 · −0.04em</span>
+        </div>
+        <div class="cover-tile">
+          <span class="cap">Surface</span>
+          <span class="num">Dark-first</span>
+          <span class="foot">ink · surface · paper</span>
+        </div>
+        <div class="cover-tile">
+          <span class="cap">Accent</span>
+          <span class="num">Solder</span>
+          <span class="foot">structural, not decorative</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         01 · LOGO
+         ====================================================== -->
+    <section class="section" id="logo">
+      <div class="section-head">
+        <span class="id">§01</span>
+        <span class="tag">logo</span>
+        <span class="spacer"></span>
+        <span>aperture · the mark + the wordmark</span>
+      </div>
+      <h2 class="section-title">Aperture.</h2>
+      <p class="section-sub">A square cropped at one corner with a thin solder line marking the cut, paired with a JetBrains Mono wordmark whose only ornament is an Instrument Serif italic slash. The mark is the brand's only piece of decoration. Use it like a punctuation mark, not like a logo.</p>
+
+      <div class="logo-grid">
+        <div class="logo-card">
+          <div class="logo-card-body">
+            <span class="wordmark">ayn<span class="slash">/</span>ai</span>
+          </div>
+          <div class="logo-card-foot">
+            <span class="lbl">Wordmark · dark</span>
+            <span class="file">wordmark-dark.svg</span>
+          </div>
+        </div>
+
+        <div class="logo-card">
+          <div class="logo-card-body">
+            <div class="mark"><span class="glyph">
+              <svg viewBox="0 0 24 24" width="64" height="64" aria-hidden="true">
+                <path d="M 22 2 L 22 22 L 2 22 L 13.6 2 Z" fill="#f4f1ea" />
+                <path d="M 2 1 L 13.6 1 L 2 21 Z" fill="none" stroke="#f4f1ea" stroke-width="0.85" />
+                <path d="M 14.4 1 L 2.4 21" stroke="#ff5b1f" stroke-width="0.7" />
+              </svg>
+            </span></div>
+          </div>
+          <div class="logo-card-foot">
+            <span class="lbl">Mark · dark</span>
+            <span class="file">mark-dark.svg</span>
+          </div>
+        </div>
+
+        <div class="logo-card light">
+          <div class="logo-card-body">
+            <span class="wordmark">ayn<span class="slash">/</span>ai</span>
+          </div>
+          <div class="logo-card-foot">
+            <span class="lbl">Wordmark · light</span>
+            <span class="file">wordmark-light.svg</span>
+          </div>
+        </div>
+
+        <div class="logo-card light">
+          <div class="logo-card-body">
+            <div class="mark"><span class="glyph">
+              <svg viewBox="0 0 24 24" width="64" height="64" aria-hidden="true">
+                <path d="M 22 2 L 22 22 L 2 22 L 13.6 2 Z" fill="#0b0b0c" />
+                <path d="M 2 1 L 13.6 1 L 2 21 Z" fill="none" stroke="#0b0b0c" stroke-width="0.85" />
+                <path d="M 14.4 1 L 2.4 21" stroke="#c4360a" stroke-width="0.7" />
+              </svg>
+            </span></div>
+          </div>
+          <div class="logo-card-foot">
+            <span class="lbl">Mark · light</span>
+            <span class="file">mark-light.svg</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-head"><span>Construction · clear space · minimums</span><span class="spacer"></span></div>
+      <div class="construction">
+        <div class="construction-card">
+          <h4>Clear space</h4>
+          <p>The cap-height of the wordmark (the "a") is one unit. Reserve one unit on all four sides. Nothing else, including type, lives in that buffer.</p>
+          <div class="construction-svg">
+            <svg viewBox="0 0 320 140" width="100%" height="100%" aria-hidden="true">
+              <defs>
+                <pattern id="dots" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="0.6" fill="rgba(244,241,234,0.18)"/></pattern>
+              </defs>
+              <!-- buffer -->
+              <rect x="50" y="40" width="220" height="60" fill="url(#dots)" />
+              <!-- inner buffer outline -->
+              <rect x="80" y="55" width="160" height="30" fill="none" stroke="rgba(244,241,234,0.25)" stroke-dasharray="3 3" />
+              <!-- wordmark -->
+              <text x="160" y="78" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="800" font-size="22" fill="#f4f1ea" letter-spacing="-0.02em">ayn</text>
+              <text x="195" y="80" text-anchor="middle" font-family="Instrument Serif, serif" font-style="italic" font-size="28" fill="#ff5b1f">/</text>
+              <text x="220" y="78" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="800" font-size="22" fill="#f4f1ea" letter-spacing="-0.02em">ai</text>
+              <!-- markers -->
+              <text x="60" y="48" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(244,241,234,0.55)">1×</text>
+              <text x="246" y="48" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(244,241,234,0.55)">1×</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="construction-card">
+          <h4>Minimum sizes</h4>
+          <p>Wordmark: 14px on screen, 8mm in print. Mark: 16px on screen, 6mm in print. Below those sizes the slash collapses and the mark stops reading. Use the favicon set instead.</p>
+          <div class="sizing">
+            <div class="sizing-item">
+              <span class="sz-mark" style="font-size:14px">ayn<span class="slash">/</span>ai</span>
+              <span class="sz-cap">14px · min screen</span>
+            </div>
+            <div class="sizing-item">
+              <span class="sz-mark" style="font-size:24px">ayn<span class="slash">/</span>ai</span>
+              <span class="sz-cap">24px</span>
+            </div>
+            <div class="sizing-item">
+              <span class="sz-mark" style="font-size:40px">ayn<span class="slash">/</span>ai</span>
+              <span class="sz-cap">40px</span>
+            </div>
+            <div class="sizing-item">
+              <span class="sz-mark" style="font-size:64px">ayn<span class="slash">/</span>ai</span>
+              <span class="sz-cap">64px · standard</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-head"><span>Don't</span><span class="spacer"></span></div>
+      <div class="dont-list">
+        <div class="dont-card">
+          <div class="demo">
+            <span class="x-mark">×</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-weight:800;font-size:24px;color:var(--fg);letter-spacing:-0.02em;">ayn<span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#5ee6c1;font-size:32px;">/</span>ai</span>
+          </div>
+          <span class="label">Don't recolor the slash</span>
+          <span class="text">The slash is solder. Always solder. Never mint, never white, never the brand color of someone else's product.</span>
+        </div>
+
+        <div class="dont-card">
+          <div class="demo">
+            <span class="x-mark">×</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-weight:800;font-size:24px;color:var(--fg);letter-spacing:0.16em;text-transform:uppercase;">AYN<span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--solder);font-size:32px;">/</span>AI</span>
+          </div>
+          <span class="label">Don't capitalize</span>
+          <span class="text">The wordmark is lowercase. Period. The company is "AYN/AI" in copy; the mark is "ayn/ai" everywhere it's set as a logo.</span>
+        </div>
+
+        <div class="dont-card">
+          <div class="demo">
+            <span class="x-mark">×</span>
+            <span style="font-family:'Funnel Sans',sans-serif;font-weight:600;font-size:24px;color:var(--fg);">ayn<span style="color:var(--solder);">/</span>ai</span>
+          </div>
+          <span class="label">Don't swap the typeface</span>
+          <span class="text">JetBrains Mono 800 for the letters. Instrument Serif italic for the slash. No substitutions, no system stacks, no Inter.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         02 · COLOR
+         ====================================================== -->
+    <section class="section" id="color">
+      <div class="section-head">
+        <span class="id">§02</span>
+        <span class="tag">color</span>
+        <span class="spacer"></span>
+        <span>locked tokens · 6 surfaces · 3 brand</span>
+      </div>
+      <h2 class="section-title">Dark-first. Solder is structural.</h2>
+      <p class="section-sub">Three surface tones do the rhythm work, replacing the alternating light/dark sections most AI sites lean on. Solder is not an accent color — it's a structural rule, a section identifier, a punctuation mark. Signal mint appears only on live status indicators.</p>
+
+      <div class="sub-head"><span>Surfaces</span><span class="spacer"></span></div>
+      <div class="color-grid">
+        <div class="swatch">
+          <div class="swatch-fill" style="background:#0b0b0c;border-bottom:1px solid var(--rule);"></div>
+          <div class="swatch-body">
+            <span class="name">Ink</span>
+            <span class="role">Page background. The default surface. Used for full-bleed sections and the hero.</span>
+            <span class="meta"><b>#0b0b0c</b> · <b>rgb(11,11,12)</b></span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-fill" style="background:#15151a;"></div>
+          <div class="swatch-body">
+            <span class="name">Surface</span>
+            <span class="role">First lift. Cards, nav bar, footer, stat tiles.</span>
+            <span class="meta"><b>#15151a</b></span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-fill" style="background:#1d1e25;"></div>
+          <div class="swatch-body">
+            <span class="name">Surface 2</span>
+            <span class="role">Second lift. Inset blocks, inputs, hover states.</span>
+            <span class="meta"><b>#1d1e25</b></span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-fill" style="background:#2a2b34;"></div>
+          <div class="swatch-body">
+            <span class="name">Surface 3</span>
+            <span class="role">Third lift. Disabled buttons, deepest hover.</span>
+            <span class="meta"><b>#2a2b34</b></span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-fill" style="background:#f4f1ea;"></div>
+          <div class="swatch-body">
+            <span class="name">Cream / FG</span>
+            <span class="role">Foreground type on dark. Page background on print docs.</span>
+            <span class="meta"><b>#f4f1ea</b></span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-fill" style="background:#faf8f3;border:1px solid var(--rule);"></div>
+          <div class="swatch-body">
+            <span class="name">Paper</span>
+            <span class="role">Document surface only. Slightly warmer than cream so the page reads like real paper.</span>
+            <span class="meta"><b>#faf8f3</b></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-head"><span>Brand</span><span class="spacer"></span></div>
+      <div class="color-grid">
+        <div class="swatch">
+          <div class="swatch-fill" style="background:#ff5b1f;"></div>
+          <div class="swatch-body">
+            <span class="name">Solder</span>
+            <span class="role">The structural rule color. Section IDs, the slash in the wordmark, primary buttons, scrubber. On-screen only.</span>
+            <span class="meta"><b>#ff5b1f</b> · <b>oklch(70.6% 0.21 41)</b></span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-fill" style="background:#c4360a;"></div>
+          <div class="swatch-body">
+            <span class="name">Solder Deep</span>
+            <span class="role">Print-safe solder for documents. Use this on letterhead, invoices, anything destined for paper.</span>
+            <span class="meta"><b>#c4360a</b></span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-fill" style="background:#5ee6c1;"></div>
+          <div class="swatch-body">
+            <span class="name">Signal</span>
+            <span class="role">Mint, used only on live indicators. The pulsing nav dot. "system online." Never decorative.</span>
+            <span class="meta"><b>#5ee6c1</b></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         03 · TYPE
+         ====================================================== -->
+    <section class="section" id="type">
+      <div class="section-head">
+        <span class="id">§03</span>
+        <span class="tag">type</span>
+        <span class="spacer"></span>
+        <span>3 families · sentence case · negative tracking on display</span>
+      </div>
+      <h2 class="section-title">Three families. One job each.</h2>
+      <p class="section-sub">Funnel Display does the talking. Funnel Sans does the explaining. JetBrains Mono does the labeling — section IDs, timestamps, metadata, code. Instrument Serif italic appears in exactly two places: the slash inside the wordmark, and the kicker on cover documents. Nowhere else.</p>
+
+      <div class="type-spec">
+        <div class="type-head">
+          <span class="role">Display</span>
+          <span class="name">Funnel Display</span>
+          <span class="meta">700 · −0.04em · sentence case</span>
+        </div>
+        <h3 class="type-sample-display">ai that works,<br/>while you sleep.</h3>
+      </div>
+
+      <div class="type-spec">
+        <div class="type-head">
+          <span class="role">Body</span>
+          <span class="name">Funnel Sans</span>
+          <span class="meta">400 / 500 · 17px · 1.55 line-height</span>
+        </div>
+        <p class="type-sample-text">Most businesses lose 60% of their leads after hours. We build AI systems that capture, qualify, and book calls automatically, so you wake up to a full pipeline instead of missed opportunities.</p>
+      </div>
+
+      <div class="type-spec">
+        <div class="type-head">
+          <span class="role">Mono</span>
+          <span class="name">JetBrains Mono</span>
+          <span class="meta">500 / 800 · uppercase + 0.14em tracking on labels</span>
+        </div>
+        <p class="type-sample-mono">§02 · proof of work · updated 04.27.2026</p>
+      </div>
+
+      <div class="type-spec">
+        <div class="type-head">
+          <span class="role">Serif</span>
+          <span class="name">Instrument Serif</span>
+          <span class="meta">italic · 400 · used only inside the wordmark</span>
+        </div>
+        <p class="type-sample-serif">/</p>
+      </div>
+
+      <div class="sub-head"><span>Scale</span><span class="spacer"></span></div>
+      <table class="scale-table">
+        <thead>
+          <tr><th>token</th><th>family</th><th>weight</th><th>size</th><th>line</th><th>tracking</th><th>preview</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>--t-hero</td><td>Funnel Display</td><td>700</td><td>112</td><td>0.95</td><td>−0.045em</td><td class="preview" style="font-size:32px;letter-spacing:-0.04em;">Aa</td></tr>
+          <tr><td>--t-h1</td><td>Funnel Display</td><td>700</td><td>72</td><td>1.0</td><td>−0.04em</td><td class="preview" style="font-size:28px;letter-spacing:-0.035em;">Aa</td></tr>
+          <tr><td>--t-h2</td><td>Funnel Display</td><td>700</td><td>48</td><td>1.05</td><td>−0.035em</td><td class="preview" style="font-size:24px;letter-spacing:-0.03em;">Aa</td></tr>
+          <tr><td>--t-h3</td><td>Funnel Display</td><td>600</td><td>28</td><td>1.15</td><td>−0.025em</td><td class="preview" style="font-size:20px;font-weight:600;letter-spacing:-0.02em;">Aa</td></tr>
+          <tr><td>--t-body-lg</td><td>Funnel Sans</td><td>400</td><td>20</td><td>1.55</td><td>0</td><td class="preview" style="font-family:'Funnel Sans';font-weight:400;font-size:18px;letter-spacing:0;">Aa</td></tr>
+          <tr><td>--t-body</td><td>Funnel Sans</td><td>400</td><td>15</td><td>1.5</td><td>0</td><td class="preview" style="font-family:'Funnel Sans';font-weight:400;font-size:15px;letter-spacing:0;">Aa</td></tr>
+          <tr><td>--t-mono</td><td>JetBrains Mono</td><td>500</td><td>13</td><td>1.4</td><td>0.04em</td><td class="preview" style="font-family:'JetBrains Mono';font-weight:500;font-size:13px;letter-spacing:0.04em;">Aa</td></tr>
+          <tr><td>--t-mono-sm</td><td>JetBrains Mono</td><td>500</td><td>11</td><td>1.4</td><td>0.14em uc</td><td class="preview" style="font-family:'JetBrains Mono';font-weight:500;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;">Aa</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ======================================================
+         04 · COMPONENTS
+         ====================================================== -->
+    <section class="section" id="components">
+      <div class="section-head">
+        <span class="id">§04</span>
+        <span class="tag">components</span>
+        <span class="spacer"></span>
+        <span>the working set</span>
+      </div>
+      <h2 class="section-title">The working set.</h2>
+      <p class="section-sub">Eight components handle 95% of the surface area. Every one is a literal copy of what's running on the live site, lifted from <code>style.css</code>. If you need something that isn't here, it probably shouldn't exist.</p>
+
+      <div class="comp-row">
+        <div class="comp-meta">
+          <span class="lbl">·01 button</span>
+          <span class="name">Button</span>
+          <p class="desc">Text-link with a ↗ in solder for primary, plain underlined text for secondary. Mirrors the live site — no filled pills, no shadows. The button is a typographic gesture.</p>
+        </div>
+        <div class="comp-stage row">
+          <button class="btn btn-primary btn-lg">Book a free call</button>
+          <button class="btn btn-ghost btn-lg">See our work</button>
+          <button class="btn btn-primary">Send</button>
+          <button class="btn btn-ghost">Cancel</button>
+          <button class="btn btn-ghost btn-sm">Read more</button>
+        </div>
+      </div>
+
+      <div class="comp-row">
+        <div class="comp-meta">
+          <span class="lbl">·02 status pill</span>
+          <span class="name">Status pill</span>
+          <p class="desc">Fixed shape, three states. Mint pulses on a 3s cadence — the only animated element on the page. Solder for warning, no-dot for idle.</p>
+        </div>
+        <div class="comp-stage row">
+          <span class="pill"><span class="dot"></span>3 systems live</span>
+          <span class="pill solder"><span class="dot"></span>queued</span>
+          <span class="pill idle"><span class="dot"></span>archived</span>
+        </div>
+      </div>
+
+      <div class="comp-row">
+        <div class="comp-meta">
+          <span class="lbl">·03 stat tile</span>
+          <span class="name">Stat tile</span>
+          <p class="desc">Caption on top, big tabular number, status foot. Used in groups of four across the hero. Tabular figures so a value change never reflows the row.</p>
+        </div>
+        <div class="comp-stage row">
+          <div class="tile">
+            <span class="tile-cap">Avg click rate</span>
+            <span class="tile-num">17.1<span style="font-size:0.55em;color:var(--fg-3);">%</span></span>
+            <span class="tile-foot"><span class="dot"></span>live · welUp</span>
+          </div>
+          <div class="tile">
+            <span class="tile-cap">Emails sent</span>
+            <span class="tile-num">3,075</span>
+            <span class="tile-foot">apr 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-row">
+        <div class="comp-meta">
+          <span class="lbl">·04 case card</span>
+          <span class="name">Case card</span>
+          <p class="desc">ID + status header, display title, three meta items. Hover lifts to surface-2 and the arrow nudges right by 2px. No drop shadow.</p>
+        </div>
+        <div class="comp-stage row">
+          <div class="case">
+            <div class="case-head">
+              <span class="case-id">CASE-02</span>
+              <span class="case-status"><span class="dot"></span>shipped</span>
+            </div>
+            <h4 class="case-title">After-hours lead capture, restoration co.</h4>
+            <div class="case-meta">
+              <span>USA · Las Vegas</span>
+              <span>17× ROI</span>
+              <span>18d to ship</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-row">
+        <div class="comp-meta">
+          <span class="lbl">·05 section header</span>
+          <span class="name">Section header</span>
+          <p class="desc">The structural unit. §id (solder) + tag (cream) + hairline rule + meta. Replaces alternating section backgrounds as the rhythm device.</p>
+        </div>
+        <div class="comp-stage">
+          <div class="section-demo-stage" style="width:100%;">
+            <div class="section-demo">
+              <div class="section-demo-head">
+                <span class="id">§02</span>
+                <span class="tag">proof of work</span>
+                <span class="spacer"></span>
+                <span>updated 04.27.2026</span>
+              </div>
+              <h3>Real systems. Real numbers.</h3>
+              <p>Not mockups. Not demos. Actual client systems we built and ran.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-row">
+        <div class="comp-meta">
+          <span class="lbl">·06 hairline rule</span>
+          <span class="name">Hairline rule</span>
+          <p class="desc">1px, <code>rgba(244,241,234,0.10)</code>. The default separator. Solder rules at 2px are reserved for section structure (see motion).</p>
+        </div>
+        <div class="comp-stage" style="gap:18px;align-items:stretch;">
+          <div style="height:1px;background:var(--rule);"></div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;">Default · 1px · cream/10</span>
+          <div style="height:2px;background:var(--solder);"></div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;">Section · 2px · solder</span>
+        </div>
+      </div>
+
+      <div class="comp-row">
+        <div class="comp-meta">
+          <span class="lbl">·07 metadata row</span>
+          <span class="name">Metadata row</span>
+          <p class="desc">Mono labels, separated by middle dots, kept to four items max. Used in case meta, doc headers, footer.</p>
+        </div>
+        <div class="comp-stage">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;">v.2026.04 · delhi · 3 systems live · updated 04.27</span>
+        </div>
+      </div>
+
+      <div class="comp-row">
+        <div class="comp-meta">
+          <span class="lbl">·08 marquee</span>
+          <span class="name">Marquee strip</span>
+          <p class="desc">A capabilities scroller. Mono, uppercase, solder dots between items, scrolls left at 60s/loop. Used once per page max.</p>
+        </div>
+        <div class="comp-stage" style="padding:0;overflow:hidden;width:100%;">
+          <div style="border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:14px 0;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);white-space:nowrap;width:100%;">
+            <span>AI Chatbots</span>
+            <span style="color:var(--solder);margin:0 24px;">/</span>
+            <span>Lead Generation</span>
+            <span style="color:var(--solder);margin:0 24px;">/</span>
+            <span>Voice Agents</span>
+            <span style="color:var(--solder);margin:0 24px;">/</span>
+            <span>Workflow Automation</span>
+            <span style="color:var(--solder);margin:0 24px;">/</span>
+            <span>24/7 Capture</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         05 · ICONOGRAPHY
+         ====================================================== -->
+    <section class="section" id="icons">
+      <div class="section-head">
+        <span class="id">§05</span>
+        <span class="tag">iconography</span>
+        <span class="spacer"></span>
+        <span>monoline · 1.5px · 24px grid</span>
+      </div>
+      <h2 class="section-title">Sparingly. Monoline. Square caps.</h2>
+      <p class="section-sub">Icons earn their place. Default to type and rules, not pictograms. When you need an icon, use 1.5px monoline strokes on a 24px grid with square line caps. No fills. No two-tone. No emoji.</p>
+
+      <div class="icon-grid">
+        <div class="icon-card">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M5 4l14 8-14 8V4z"/></svg></span>
+          <span class="name">play</span>
+        </div>
+        <div class="icon-card">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg></span>
+          <span class="name">list</span>
+        </div>
+        <div class="icon-card">
+          <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <span class="name">clock</span>
+        </div>
+        <div class="icon-card">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M4 6l8 7 8-7"/></svg></span>
+          <span class="name">mail</span>
+        </div>
+        <div class="icon-card">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <span class="name">arrow</span>
+        </div>
+        <div class="icon-card">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>
+          <span class="name">trend</span>
+        </div>
+        <div class="icon-card">
+          <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M3 12h3M18 12h3M12 3v3M12 18v3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg></span>
+          <span class="name">live</span>
+        </div>
+        <div class="icon-card">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg></span>
+          <span class="name">grid</span>
+        </div>
+        <div class="icon-card">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l9 5v8l-9 5-9-5V8l9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></span>
+          <span class="name">box</span>
+        </div>
+        <div class="icon-card">
+          <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span>
+          <span class="name">user</span>
+        </div>
+        <div class="icon-card">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4 8.4 8.4 0 0 1-4-1L3 21l2.1-5.6a8.4 8.4 0 0 1-1-4 8.4 8.4 0 0 1 8.4-8.4 8.4 8.4 0 0 1 8.4 8.4z"/></svg></span>
+          <span class="name">chat</span>
+        </div>
+        <div class="icon-card">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M22 16.92V20a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3.08a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span class="name">phone</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         06 · VOICE
+         ====================================================== -->
+    <section class="section" id="voice">
+      <div class="section-head">
+        <span class="id">§06</span>
+        <span class="tag">voice</span>
+        <span class="spacer"></span>
+        <span>specifics · numbers · sentence case</span>
+      </div>
+      <h2 class="section-title">Specifics, not adjectives.</h2>
+      <p class="section-sub">AYN/AI sounds like the person who actually wrote the code, because that's who's writing the copy. Sentence case throughout. Real numbers. Short sentences. The reader's time matters more than the writer's cleverness.</p>
+
+      <div class="voice-grid">
+        <div class="voice-card do">
+          <span class="lbl"><span class="dot"></span>do</span>
+          <h4>Lead with the receipt.</h4>
+          <p class="quote">"3,075 cold emails sent. 17.1% click rate. 14,070 leads in the database."</p>
+          <p class="note">Open with the work that exists, not the work you'll do. Numbers earn the next sentence.</p>
+        </div>
+
+        <div class="voice-card dont">
+          <span class="lbl"><span class="dot"></span>don't</span>
+          <h4>Lead with the promise.</h4>
+          <p class="quote">"We help ambitious founders unlock unprecedented growth through cutting-edge AI."</p>
+          <p class="note">Adjective stack, no proof. Every AI agency website opens like this. Don't.</p>
+        </div>
+
+        <div class="voice-card do">
+          <span class="lbl"><span class="dot"></span>do</span>
+          <h4>Be plain about scope.</h4>
+          <p class="quote">"21 days to ship. $2,000 to start. One founder, no agency middlemen."</p>
+          <p class="note">Numbers in the place of vague words. The reader can decide in 10 seconds.</p>
+        </div>
+
+        <div class="voice-card dont">
+          <span class="lbl"><span class="dot"></span>don't</span>
+          <h4>Hide behind the pitch.</h4>
+          <p class="quote">"We tailor every engagement to your unique business needs and revenue goals."</p>
+          <p class="note">Says nothing. Implies high price, slow timeline. Cut.</p>
+        </div>
+      </div>
+
+      <div class="sub-head"><span>Phrase swap</span><span class="spacer"></span></div>
+      <table class="voice-table">
+        <thead>
+          <tr><th style="width:42%;">Don't</th><th>Do</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="strike">Leverage AI to transform your business.</td><td class="ok">Most leads arrive after hours. We answer them.</td></tr>
+          <tr><td class="strike">Cutting-edge solutions tailored to your needs.</td><td class="ok">n8n, GPT-4o, AWS SES. Three weeks to ship.</td></tr>
+          <tr><td class="strike">Unlock unprecedented growth.</td><td class="ok">17.1% click rate, sustained over 3,075 emails.</td></tr>
+          <tr><td class="strike">Innovate. Iterate. Accelerate.</td><td class="ok">21 days, or you don't pay.</td></tr>
+          <tr><td class="strike">Empowering founders to scale smarter.</td><td class="ok">One founder. Zero layers. Talk to the person writing the code.</td></tr>
+          <tr><td class="strike">In today's fast-paced digital landscape…</td><td class="ok">[just delete this and start with the next sentence]</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ======================================================
+         07 · MOTION
+         ====================================================== -->
+    <section class="section" id="motion">
+      <div class="section-head">
+        <span class="id">§07</span>
+        <span class="tag">motion</span>
+        <span class="spacer"></span>
+        <span>motion is data, not decoration</span>
+      </div>
+      <h2 class="section-title">Motion is data, not decoration.</h2>
+      <p class="section-sub">Anything that moves on the page is reading something true. The mint dot pulses because the system is online. The scrubber moves because you're scrolling. Numbers tick once on first view because they're tabular. Nothing else animates.</p>
+
+      <div class="motion-grid">
+        <div class="motion-card">
+          <h4>Status pulse</h4>
+          <p>The mint dot in the nav and on case statuses fades 1.0 → 0.4 → 1.0 across 3 seconds, shared across the page so all live indicators breathe in unison.</p>
+          <div class="stat-row">
+            <span><b>3.0s</b> · cycle</span>
+            <span><b>ease-in-out</b></span>
+            <span><b>opacity</b> only</span>
+          </div>
+        </div>
+
+        <div class="motion-card">
+          <h4>Section scrubber</h4>
+          <p>A 12px solder bead anchored to the left rule advances as you scroll, snapping to each §section. Indicates which section you're reading without a separate progress bar.</p>
+          <div class="stat-row">
+            <span><b>scroll-driven</b></span>
+            <span><b>snap</b> on section enter</span>
+            <span><b>180ms</b> easing</span>
+          </div>
+        </div>
+
+        <div class="motion-card">
+          <h4>Number count-up</h4>
+          <p>Tabular numerals tick from 0 to value once, on first view, over 800ms. Tabular so the row never reflows. Plays exactly once, not on re-scroll.</p>
+          <div class="stat-row">
+            <span><b>800ms</b></span>
+            <span><b>once</b> per session</span>
+            <span><b>tnum</b> required</span>
+          </div>
+        </div>
+
+        <div class="motion-card">
+          <h4>Hover</h4>
+          <p>Cards lift to surface-2 (no shadow), buttons brighten by ~10%, the case-card arrow nudges right by 2px. All transitions 150ms, ease-out. No card flips, no parallax.</p>
+          <div class="stat-row">
+            <span><b>150ms</b></span>
+            <span><b>cubic-bezier(.2,.7,.2,1)</b></span>
+            <span><b>no shadows</b></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         08 · APPLICATIONS
+         ====================================================== -->
+    <section class="section" id="applications">
+      <div class="section-head">
+        <span class="id">§08</span>
+        <span class="tag">applications</span>
+        <span class="spacer"></span>
+        <span>document system · five templates</span>
+      </div>
+      <h2 class="section-title">In the wild.</h2>
+      <p class="section-sub">The system extends to print. Five document templates share the same tokens, scaled for paper: solder-deep replaces solder, paper replaces ink, body type warms slightly. Live previews below — click through to the full template.</p>
+
+      <div class="apps-grid">
+        <div class="app-card">
+          <div class="app-preview">
+            <div class="app-invoice">
+              <div class="ai-head">
+                <span class="ai-mark">ayn<span class="slash">/</span>ai</span>
+                <span class="ai-meta">INV-2026-014<br/>27 APR 2026</span>
+              </div>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:6px;letter-spacing:0.16em;text-transform:uppercase;color:var(--solder-deep);">Invoice</span>
+              <div class="ai-title">Cold email engine, q2.</div>
+              <div class="ai-rows">
+                <div><span>Cold email infrastructure setup</span><span>$1,200</span></div>
+                <div><span>GPT-4o personalization layer</span><span>$800</span></div>
+                <div><span>Monthly retainer · April</span><span>$500</span></div>
+              </div>
+              <div class="ai-total"><span>Total</span><span>$2,500</span></div>
+            </div>
+          </div>
+          <div class="app-foot">
+            <div>
+              <span class="name">Invoice</span>
+              <span class="file" style="margin-left:8px;">static · generator</span>
+            </div>
+            <span style="display:flex;gap:6px;"><a href="invoice.html">static</a><a href="invoice-generator.html">generator →</a></span>
+          </div>
+        </div>
+
+        <div class="app-card">
+          <div class="app-preview">
+            <div class="app-proposal">
+              <span class="pp-kicker">Proposal · SOW</span>
+              <span class="pp-title">After-hours lead capture, restoration co.</span>
+              <div class="pp-cols">
+                <div><span>Client</span><b>Restoration LV</b></div>
+                <div><span>Term</span><b>21 days</b></div>
+                <div><span>Investment</span><b>$2,400</b></div>
+                <div><span>Status</span><b>Awaiting sig</b></div>
+              </div>
+            </div>
+          </div>
+          <div class="app-foot">
+            <div>
+              <span class="name">Proposal / SOW</span>
+              <span class="file" style="margin-left:8px;">static · generator</span>
+            </div>
+            <span style="display:flex;gap:6px;"><a href="proposal.html">static</a><a href="proposal-generator.html">generator →</a></span>
+          </div>
+        </div>
+
+        <div class="app-card">
+          <div class="app-preview">
+            <div class="app-status">
+              <div class="ss-head">
+                <span class="ss-title">Weekly status, welUp.</span>
+                <span class="ss-week">Week 14 · 04.27.26</span>
+              </div>
+              <div class="ss-rows">
+                <div class="ss-row"><span class="pill-tiny go">shipped</span><span>10 warm sender accounts live, GPT-4o personalization deployed</span></div>
+                <div class="ss-row"><span class="pill-tiny go">shipped</span><span>WhatsApp tracking layer · 38.1% best-day CTR</span></div>
+                <div class="ss-row"><span class="pill-tiny do">doing</span><span>Apollo enrichment · firmographic filters tightening</span></div>
+                <div class="ss-row"><span class="pill-tiny do">doing</span><span>Sequence v3 · weekly cadence test, n=400</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="app-foot">
+            <div>
+              <span class="name">Status update</span>
+              <span class="file" style="margin-left:8px;">static · generator</span>
+            </div>
+            <span style="display:flex;gap:6px;"><a href="status-update.html">static</a><a href="status-update-generator.html">generator →</a></span>
+          </div>
+        </div>
+
+        <div class="app-card">
+          <div class="app-preview">
+            <div class="app-letter">
+              <div class="lt-head">
+                <span class="lt-mark">ayn<span class="slash">/</span>ai</span>
+                <span class="lt-meta">Delhi · India<br/>aryan@aynai.me<br/>27 Apr 2026</span>
+              </div>
+              <p class="lt-body">Dear <b>Restoration LV team</b>,<br/><br/>Thanks for the call last Thursday. As discussed, attached is a one-page brief on what we'd build, how long it takes, and what it costs.<br/><br/>Three weeks to ship. $2,400 fixed. We start the day you sign.</p>
+              <span class="lt-sig">Aryan</span>
+            </div>
+          </div>
+          <div class="app-foot">
+            <div>
+              <span class="name">Letterhead / onboarding</span>
+              <span class="file" style="margin-left:8px;">static · generator</span>
+            </div>
+            <span style="display:flex;gap:6px;"><a href="letterhead.html">letterhead</a><a href="onboarding-generator.html">onboarding →</a></span>
+          </div>
+        </div>
+
+        <div class="app-card">
+          <div class="app-preview">
+            <div class="app-sig">
+              <div class="app-sig-block">
+                <span class="as-mark">ayn<span class="slash">/</span>ai</span>
+                <span class="div"></span>
+                <div class="as-meta">
+                  <span class="as-name">Aryan Khudlain</span>
+                  <span class="as-role">Founder · AYN/AI</span>
+                  <span class="as-link">aynai.me  ·  +91 99XX XX XX XX</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="app-foot">
+            <div>
+              <span class="name">Email signature</span>
+              <span class="file" style="margin-left:8px;">brand-kit/email-signature.html</span>
+            </div>
+            <a href="email-signature.html">open →</a>
+          </div>
+        </div>
+
+        <div class="app-card">
+          <div class="app-preview" style="background:var(--ink);align-items:center;justify-content:center;">
+            <div style="display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;padding:8px;">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);">aynai.me · the live site</span>
+              <span style="font-family:'Funnel Display',sans-serif;font-weight:700;font-size:22px;letter-spacing:-0.035em;color:var(--fg);line-height:1;">ai that works,<br/>while you sleep.</span>
+              <span class="pill"><span class="dot"></span>3 systems live</span>
+            </div>
+          </div>
+          <div class="app-foot">
+            <div>
+              <span class="name">Website</span>
+              <span class="file" style="margin-left:8px;">aynai.me</span>
+            </div>
+            <a href="https://aynai.me/" target="_blank" rel="noopener">open →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         09 · DOWNLOADS
+         ====================================================== -->
+    <section class="section" id="downloads">
+      <div class="section-head">
+        <span class="id">§09</span>
+        <span class="tag">downloads</span>
+        <span class="spacer"></span>
+        <span>asset index</span>
+      </div>
+      <h2 class="section-title">Asset index.</h2>
+      <p class="section-sub">Every file lives in <code>brand-kit/assets/</code>. SVGs are the primary format. PNG @1×/2×/3× provided for places that can't render SVG. Favicon set is exhaustive: 16, 32, 180 (Apple touch), 512 (maskable / install), and an SVG that ships with light + dark modes baked in via media queries.</p>
+
+      <div class="downloads">
+        <div class="download-card">
+          <h4>Wordmark</h4>
+          <div class="files">
+            <a href="assets/wordmark-dark.svg"><span>wordmark-dark</span><span>SVG</span></a>
+            <a href="assets/wordmark-light.svg"><span>wordmark-light</span><span>SVG</span></a>
+            <a href="assets/wordmark-dark-1x.png"><span>wordmark-dark</span><span>PNG @1×</span></a>
+            <a href="assets/wordmark-dark-2x.png"><span>wordmark-dark</span><span>PNG @2×</span></a>
+            <a href="assets/wordmark-dark-3x.png"><span>wordmark-dark</span><span>PNG @3×</span></a>
+            <a href="assets/wordmark-light-1x.png"><span>wordmark-light</span><span>PNG @1×</span></a>
+            <a href="assets/wordmark-light-2x.png"><span>wordmark-light</span><span>PNG @2×</span></a>
+            <a href="assets/wordmark-light-3x.png"><span>wordmark-light</span><span>PNG @3×</span></a>
+          </div>
+        </div>
+
+        <div class="download-card">
+          <h4>Mark</h4>
+          <div class="files">
+            <a href="assets/mark-dark.svg"><span>mark-dark</span><span>SVG</span></a>
+            <a href="assets/mark-light.svg"><span>mark-light</span><span>SVG</span></a>
+            <a href="assets/mark-dark-1x.png"><span>mark-dark</span><span>PNG @1×</span></a>
+            <a href="assets/mark-dark-2x.png"><span>mark-dark</span><span>PNG @2×</span></a>
+            <a href="assets/mark-dark-3x.png"><span>mark-dark</span><span>PNG @3×</span></a>
+            <a href="assets/mark-light-1x.png"><span>mark-light</span><span>PNG @1×</span></a>
+            <a href="assets/mark-light-2x.png"><span>mark-light</span><span>PNG @2×</span></a>
+            <a href="assets/mark-light-3x.png"><span>mark-light</span><span>PNG @3×</span></a>
+          </div>
+        </div>
+
+        <div class="download-card">
+          <h4>Favicon set</h4>
+          <div class="files">
+            <a href="assets/favicon-16.png"><span>favicon-16</span><span>PNG</span></a>
+            <a href="assets/favicon-32.png"><span>favicon-32</span><span>PNG</span></a>
+            <a href="assets/favicon-180.png"><span>apple-touch</span><span>PNG 180</span></a>
+            <a href="assets/favicon-512.png"><span>maskable</span><span>PNG 512</span></a>
+            <a href="assets/favicon-cream.svg"><span>favicon</span><span>SVG</span></a>
+          </div>
+        </div>
+
+        <div class="download-card">
+          <h4>Documents</h4>
+          <div class="files">
+            <a href="invoice.html"><span>invoice</span><span>HTML</span></a>
+            <a href="proposal.html"><span>proposal</span><span>HTML</span></a>
+            <a href="status-update.html"><span>status</span><span>HTML</span></a>
+            <a href="letterhead.html"><span>letterhead</span><span>HTML</span></a>
+            <a href="email-signature.html"><span>signature</span><span>HTML</span></a>
+            <a href="doc.css"><span>shared styles</span><span>CSS</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         FOOTER
+         ====================================================== -->
+    <div class="kit-foot">
+      <span>ayn/ai · brand kit · v.2026.04</span>
+      <span>maintained at /brand-kit/index.html</span>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,536 @@
+/* ============================================================
+   VOX/Protocol · AYN/AI Operations Console aesthetic
+   ============================================================ */
+
+:root {
+  color-scheme: dark;
+  --ink:        #0b0b0c;
+  --surface:    #15151a;
+  --surface-2:  #1d1e25;
+  --surface-3:  #2a2b34;
+  --rule:       rgba(244,241,234,0.10);
+  --rule-soft:  rgba(244,241,234,0.06);
+
+  --fg:         #f4f1ea;
+  --fg-2:       rgba(244,241,234,0.74);
+  --fg-3:       rgba(244,241,234,0.52);
+  --muted:      rgba(244,241,234,0.42);
+
+  --solder:     #ff5b1f;
+  --solder-deep:#c4360a;
+  --signal:     #5ee6c1;
+  --paper:      #faf8f3;
+  --paper-2:    #f4f1ea;
+
+  --ease:       cubic-bezier(.2,.7,.2,1);
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  margin: 0;
+  background: var(--ink);
+  color: var(--fg);
+  font-family: 'Funnel Sans', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--solder); }
+
+code, .mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.92em;
+}
+
+/* ============================================================
+   SHELL — sticky rail + content
+   ============================================================ */
+.shell {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
+}
+
+@media (max-width: 1100px) {
+  .shell { grid-template-columns: 1fr; }
+  .rail { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--rule); }
+}
+
+.rail {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  border-right: 1px solid var(--rule);
+  background: var(--ink);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  overflow-y: auto;
+}
+
+.rail-brand {
+  display: flex; align-items: center; gap: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+.rail-brand .slash {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--solder);
+  font-size: 24px;
+  line-height: 0;
+  margin: 0 1px;
+}
+.rail-brand .ap-mark {
+  width: 28px; height: 28px;
+  flex: none;
+}
+
+.rail-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex; flex-direction: column; gap: 6px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--rule);
+}
+.rail-meta .row { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.rail-meta b { color: var(--fg); font-weight: 500; }
+.rail-meta .ok { color: var(--signal); }
+.rail-meta .warn { color: var(--solder); }
+
+.rail nav { display: flex; flex-direction: column; gap: 4px; }
+.rail nav h6 {
+  margin: 18px 0 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+.rail nav a {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--fg-2);
+  padding: 6px 8px;
+  border-radius: 3px;
+  transition: background .15s var(--ease), color .15s var(--ease);
+  cursor: pointer;
+}
+.rail nav a:hover, .rail nav a.active { background: var(--surface-2); color: var(--fg); }
+.rail nav a .num { color: var(--solder); width: 28px; flex: none; }
+
+.rail-foot {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex; flex-direction: column; gap: 6px;
+}
+
+/* ============================================================
+   CONTENT
+   ============================================================ */
+.content {
+  padding: 40px 56px 96px;
+  max-width: 1280px;
+}
+@media (max-width: 900px) { .content { padding: 32px 24px 80px; } }
+
+/* COVER */
+.cover {
+  padding: 8px 0 48px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 40px;
+}
+.cover-meta {
+  display: flex; align-items: center; gap: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.cover-meta .id { color: var(--solder); }
+.cover-meta .tag { color: var(--fg); }
+.cover-meta .spacer { flex: 1; height: 1px; background: var(--rule); }
+
+.cover-title {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 700;
+  font-size: clamp(48px, 6.5vw, 96px);
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  color: var(--fg);
+  margin: 0 0 18px;
+  max-width: 14ch;
+}
+.cover-title em {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--solder);
+}
+.cover-sub {
+  font-family: 'Funnel Sans', sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--fg-2);
+  max-width: 64ch;
+  margin: 0 0 28px;
+}
+
+.cover-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 28px;
+}
+@media (max-width: 900px) { .cover-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.tile {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  border-radius: 4px;
+  padding: 16px 18px;
+  display: flex; flex-direction: column; gap: 6px;
+  min-height: 110px;
+}
+.tile .cap {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.tile .num {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--fg);
+}
+.tile .num.solder { color: var(--solder); }
+.tile .num.signal { color: var(--signal); }
+.tile .foot {
+  margin-top: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--fg-3);
+}
+
+/* SECTIONS */
+.section {
+  padding: 40px 0 48px;
+  border-bottom: 1px solid var(--rule);
+  scroll-margin-top: 24px;
+}
+.section:last-of-type { border-bottom: none; }
+.section-head {
+  display: flex; align-items: center; gap: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.section-head .id { color: var(--solder); }
+.section-head .tag { color: var(--fg); }
+.section-head .spacer { flex: 1; height: 1px; background: var(--rule); }
+.section-head .right { color: var(--fg-3); }
+
+.section-title {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--fg);
+  margin: 0 0 8px;
+}
+.section-sub {
+  font-family: 'Funnel Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--fg-2);
+  max-width: 68ch;
+  margin: 0 0 24px;
+}
+
+/* PANEL — base card */
+.panel {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  border-radius: 4px;
+  padding: 0;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.panel-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--rule);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+.panel-head .left { display: flex; align-items: center; gap: 10px; }
+.panel-head .id { color: var(--solder); }
+.panel-head .right { color: var(--fg-3); display: flex; align-items: center; gap: 8px; }
+.panel-body { padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+
+.row-grid-2 { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 10px; }
+.row-grid-1-1 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (max-width: 1000px) {
+  .row-grid-2, .row-grid-1-1 { grid-template-columns: 1fr; }
+}
+
+.kv {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  column-gap: 14px;
+  row-gap: 8px;
+  font-size: 14px;
+}
+.kv .k {
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.kv .v {
+  color: var(--fg);
+  word-break: break-all;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+
+.hr { height: 1px; background: var(--rule); margin: 12px 0; border: 0; }
+
+/* REPUTATION + BALANCE */
+.metric {
+  display: flex; align-items: baseline; gap: 12px;
+}
+.metric .num {
+  font-family: 'Funnel Display', sans-serif;
+  font-weight: 700;
+  font-size: 56px;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--fg);
+}
+.metric .num.solder { color: var(--solder); }
+.metric .num.signal { color: var(--signal); }
+.metric .label {
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+}
+
+/* BUTTONS */
+.btn {
+  appearance: none;
+  border: 1px solid var(--solder);
+  background: var(--solder);
+  color: var(--ink);
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  border-radius: 3px;
+  transition: background .15s var(--ease), color .15s var(--ease), opacity .15s var(--ease);
+}
+.btn:hover { background: var(--solder-deep); border-color: var(--solder-deep); color: var(--paper); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.btn.ghost {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--rule);
+}
+.btn.ghost:hover { background: var(--surface-2); border-color: var(--fg-3); color: var(--fg); }
+
+.btn.signal {
+  background: var(--signal);
+  border-color: var(--signal);
+  color: var(--ink);
+}
+.btn.signal:hover { background: #46c2a3; border-color: #46c2a3; }
+
+.row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+
+/* CHIPS / BADGES */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  color: var(--fg-2);
+}
+.chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 10px var(--signal); }
+.chip.solder .dot { background: var(--solder); box-shadow: 0 0 10px var(--solder); }
+
+.badge {
+  display: inline-flex; align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-weight: 700;
+  border: 1px solid currentColor;
+}
+.badge.PAID      { color: var(--signal); }
+.badge.PROMISED  { color: var(--solder); }
+.badge.NO_ANSWER { color: var(--fg-3); }
+.badge.DNC       { color: #ff5b6b; }
+
+/* FEED */
+.feed { display: flex; flex-direction: column; gap: 8px; max-height: 460px; overflow-y: auto; padding-right: 4px; }
+.feed-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--surface-2);
+}
+.feed-item .meta { display: flex; flex-direction: column; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+.feed-item .meta .top { color: var(--fg); }
+.feed-item .meta .top .id { color: var(--solder); }
+.feed-item .meta .bot { color: var(--fg-3); }
+
+/* TRANSCRIPT */
+.transcript {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  background: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 16px 18px;
+  height: 360px;
+  overflow-y: auto;
+  color: var(--fg-2);
+}
+.transcript .line { margin-bottom: 10px; }
+.transcript .who {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 10px;
+  margin-right: 8px;
+  font-weight: 700;
+}
+.transcript .who.agent { color: var(--solder); }
+.transcript .who.user  { color: var(--signal); }
+.transcript .body {
+  color: var(--fg);
+  font-family: 'Funnel Sans', sans-serif;
+  font-size: 14px;
+}
+.transcript .empty {
+  color: var(--fg-3);
+  font-family: 'Funnel Sans', sans-serif;
+  font-size: 14px;
+}
+
+/* PHASE STRIP */
+.phase-strip {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--surface-2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+.phase-strip .left { display: flex; align-items: center; gap: 10px; }
+.phase-strip .clock { color: var(--fg-3); }
+
+/* PULSING DOT */
+.pulse {
+  display: inline-block;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 0 0 rgba(94,230,193,0.55);
+  animation: pulse 1.4s infinite;
+}
+.pulse.solder { background: var(--solder); box-shadow: 0 0 0 0 rgba(255,91,31,0.55); animation: pulse-solder 1.4s infinite; }
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(94,230,193,0.55); }
+  70%  { box-shadow: 0 0 0 10px rgba(94,230,193,0); }
+  100% { box-shadow: 0 0 0 0 rgba(94,230,193,0); }
+}
+@keyframes pulse-solder {
+  0%   { box-shadow: 0 0 0 0 rgba(255,91,31,0.55); }
+  70%  { box-shadow: 0 0 0 10px rgba(255,91,31,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,91,31,0); }
+}
+
+/* TOAST */
+.toast {
+  position: fixed; right: 24px; bottom: 24px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--solder);
+  padding: 12px 16px;
+  border-radius: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  max-width: 420px;
+  color: var(--fg);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  z-index: 50;
+}
+
+/* APERTURE LOGO */
+.aperture-glyph {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.muted { color: var(--muted); }
+.fg2 { color: var(--fg-2); }
+.fg3 { color: var(--fg-3); }

@@ -1,0 +1,25 @@
+<!--
+  AYN/AI · The Aperture · stacked lockup
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 172" role="img" aria-label="AYN/AI">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&amp;family=Instrument+Serif:ital@1&amp;display=swap');
+      .sm-mark { font-family: 'JetBrains Mono', ui-monospace, monospace;
+                 font-weight: 700; font-size: 38px; letter-spacing: -1.2px; }
+      .sm-slash { font-family: 'Instrument Serif', Georgia, serif;
+                  font-style: italic; font-weight: 400; font-size: 52px; }
+    </style>
+  </defs>
+
+  <!-- Mark, 80px scaled, centered -->
+  <g transform="translate(80 4) scale(3.333)">
+    <path d="M 22 2 L 22 22 L 2 22 L 13.6 2 Z" fill="#f4f1ea"/>
+    <path d="M 2 1 L 13.6 1 L 2 21 Z" fill="none" stroke="#f4f1ea" stroke-width="0.85" stroke-linejoin="miter"/>
+    <path d="M 14.4 1 L 2.4 21" stroke="#ff5b1f" stroke-width="0.7"/>
+  </g>
+
+  <text x="42" y="150" class="sm-mark" fill="#f4f1ea">ayn</text>
+  <text x="116" y="154" class="sm-slash" fill="#ff5b1f">/</text>
+  <text x="146" y="150" class="sm-mark" fill="#f4f1ea">ai</text>
+</svg>

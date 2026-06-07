@@ -1,0 +1,119 @@
+/* AI chat panel — sits at top of form pane */
+.ai-chat {
+  border: 1px solid rgba(255,91,31,0.25);
+  background: rgba(255,91,31,0.04);
+  border-radius: 4px;
+  padding: 14px;
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ai-chat-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ai-chat-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ff5b1f;
+  font-weight: 600;
+}
+.ai-chat-clear {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.10);
+  color: #888581;
+  padding: 3px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.ai-chat-clear:hover { color: #e8e4d8; border-color: rgba(255,255,255,0.20); }
+.ai-chat-hint {
+  font-size: 11px;
+  color: #888581;
+  margin: 0;
+  line-height: 1.5;
+}
+.ai-chat-log {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 240px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.ai-chat-log:empty { display: none; }
+.ai-bubble {
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 8px 10px;
+  border-radius: 3px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.ai-bubble.user {
+  background: rgba(255,255,255,0.06);
+  color: #e8e4d8;
+  align-self: flex-end;
+  max-width: 90%;
+}
+.ai-bubble.assistant {
+  background: rgba(255,91,31,0.08);
+  color: #c8c2b3;
+  align-self: flex-start;
+  max-width: 90%;
+  border-left: 2px solid rgba(255,91,31,0.4);
+}
+.ai-chat-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ai-chat-input-wrap textarea {
+  font-family: 'Funnel Sans', sans-serif;
+  font-size: 12px;
+  resize: vertical;
+  min-height: 56px;
+}
+.ai-chat-send {
+  align-self: stretch;
+  font-size: 12px !important;
+  padding: 8px 12px !important;
+}
+.ai-chat-foot {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #888581;
+}
+.ai-chat-foot b { color: #c8c2b3; font-weight: 500; }
+
+.ai-key-row {
+  display: flex;
+  gap: 6px;
+}
+.ai-key-row input {
+  flex: 1;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+.ai-key-row .btn { padding: 6px 10px; font-size: 11px; }
+.ai-key-hint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #888581;
+}
+.ai-key-hint a {
+  color: #ff5b1f;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,91,31,0.3);
+}
+.ai-key-hint a:hover { border-bottom-color: #ff5b1f; }
