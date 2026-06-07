@@ -12,3 +12,6 @@ contracts/.gas-snapshot
 # OS
 .DS_Store
 .vercel
+
+# Claude Code local state
+.claude/
